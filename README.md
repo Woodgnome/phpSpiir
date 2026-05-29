@@ -2,7 +2,7 @@
 
 Klon af PHP med scrapet frontend* og reverse engineered backend i PHP.
 
-* *Plus ændringer af en håndfuld stier i `(old)config.js`*
+\* *Plus ændringer af en håndfuld stier i `(old)config.js`*
 
 ## Disclaimer
 
