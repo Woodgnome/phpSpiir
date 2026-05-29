@@ -1,0 +1,9 @@
+﻿<div class="introTooltip joyRideTooltip">
+    <div class="arrow bottom"></div>
+    <a href="#" class="close" data-bind="click: close"></a>
+    <h2 data-bind="text: title, visible: title"></h2>
+    <div data-bind="html: content"></div>
+    <p class="actions" data-bind="foreach: actions">
+        <button class="btn mrs" data-bind="click: $parent.handleAction, html: label, css: { 'btn-primary': $data.primary, 'btn-link': $data.link }"></button>
+    </p>
+</div>

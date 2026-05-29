@@ -1,0 +1,19 @@
+﻿<section data-bind="visible: !mobileAppRequired">
+    <h2>Mine banker</h2>
+
+    <ul class="banks" data-bind="component: bankViews"></ul>
+</section>
+
+<section data-bind="visible: mobileAppRequired" lang="en">
+    <h2>Manage Banks</h2>
+    <p>You can only manage your bank connections using our mobile app.</p>
+</section>
+
+<section class="separatorTop">
+    <p>
+        <small>Ser du den samme konto to gange?</small>
+    </p>
+    <p style="text-align: center">
+        <a class="btn btn-mini" href="#" data-bind="navigate: 'period-index'">Flet konti</a>
+    </p>
+</section>

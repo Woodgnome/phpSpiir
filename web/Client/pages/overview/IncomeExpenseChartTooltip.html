@@ -1,0 +1,28 @@
+﻿<div class="introTooltip transparent incomeExpenseChartTooltip" style="width: 300px;" data-offset-x="58">
+    <div class="arrow bottom"></div>
+
+
+    <div class="columns">
+        <div class="leftColumn">
+            <h3 data-bind="formatMonth: month"></h3>
+
+            <p class="labelledNumber">
+                <span class="title">Resultat</span>
+                <br/>
+                <span class="chartBullet resultBullet"></span>
+                <span class="number currency" data-bind="formatNumber: result, currency: currency"></span>
+            </p>
+        </div>
+        <div class="rightColumn">
+            <h3>Ift. gennemsnit</h3>
+
+            <div data-bind="foreach: items">
+                <p class="labelledNumber detailLabelledNumber">
+                    <span class="title" data-bind="text: title"></span>
+                    <br/>
+                    <span class="number currency difference" data-bind="formatNumber: amount, currency: currency, css: { over: worseThanAverage }"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

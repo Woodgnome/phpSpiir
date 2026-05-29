@@ -1,0 +1,32 @@
+﻿<div data-bind="visible: visible">
+    <h4>Konti hos <strong data-bind="text: bank.name"></strong></h4>
+    
+    <!--ko if: newPostings() > 0 -->
+        <p>
+            Der er indlæst <strong data-bind="formatNumber: newPostings"></strong> poster i Spiir.
+            <span data-bind="text: (categorizedPostings() / newPostings()).toCategorizationPercent()"></span>% af dine poster er automatisk kategoriseret.
+        </p>
+        <!--ko if: newPostings() === categorizedPostings() -->
+            <p class="topActions mtl">
+                <button class="btn btn-primary mrl" data-bind="click: goToOverview">Gå til overblik</button>
+                <a href="#" data-bind="click: close"><strong>Luk vindue</strong></a>
+            </p>
+        <!--/ko-->
+        <!--ko if: newPostings() !== categorizedPostings()-->
+            <p>
+                Få fuldt overblik over din økonomi &ndash; start med at kategorisere de 
+                <span data-bind="text: (1 - categorizedPostings() / newPostings()).toCategorizationPercent()"></span>% som Spiir ikke selv kunne genkende.        
+            </p>
+            <p class="topActions mtl">
+                <button class="btn btn-primary" data-bind="click: goToPostings">Se indlæste poster</button>
+            </p>
+        <!--/ko-->
+    <!--/ko-->
+    
+    <!--ko if: newPostings() === 0 -->
+        <p>Ingen nye poster blev indlæst i Spiir.</p>
+        <p class="topActions mtl">
+            <button class="btn btn-primary" data-bind="click: close">Luk vindue</button>
+        </p>
+    <!--/ko-->
+</div>

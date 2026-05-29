@@ -1,0 +1,35 @@
+﻿<div data-bind="visible: visible">
+    <h4>Ny integration med med Lån & Spar</h4>
+
+    <p>
+        Vi er klar med en ny integration med Lån & Spar, hvor du kan logge på med NemID og tilføje dine konti direkte i Spiir.
+
+        <br /><br />
+        Vær opmærksom på:
+    </p>
+
+    <ul>
+        <li>
+            <b>Kun ejeren af en konto kan tilføje den</b><br />
+            Hvis I er to personer på samme Spiir-bruger, skal I muligvis begge logge på Lån & Spar med hvert jeres login.
+
+        </li>
+
+        <li style="margin-top: 8px;">
+            <b>Ingen adgang til Mastercard konti</b> <br />
+            Vi arbejder på en løsning i samarbejde med Lån & Spar.
+        </li>
+    </ul>
+    
+    <br />
+
+    <button data-bind="click: activateNewIntegration, disable: loading()" class="btn btn-primary">
+        Aktiver ny integration
+    </button>
+
+
+    <hr />
+    <p>
+        <a href="#" data-bind="click: goToManualImport">Skift til manuel indlæsning</a>.
+    </p>
+</div>

@@ -1,0 +1,57 @@
+﻿<div class="introTooltip budgetTooltip" data-bind="css: { twoColumns: showTwoColumns }">
+    <span class="arrow bottom"></span>
+
+    <div class="columns">
+        <div data-bind="css: { leftColumn: showTwoColumns }">
+            <p class="labelledNumber" data-bind="visible: !rollover">
+                <span class="title">Budget</span>
+                <br />
+                <span class="number currency" data-bind="formatNumber: budget, currency: currency"></span>
+            </p>
+            <div data-bind="visible: rollover">
+                <p class="labelledNumber">
+                    <span class="title">Løbende budget</span>
+                    <br />
+                    <span class="number currency" data-bind="formatNumber: budget, currency: currency"></span>
+                </p>
+                <div class="rollover">
+                    <p class="labelledNumber smallLabelledNumber">
+                        <span class="title">Budget</span>
+                        <br />
+                        <span class="number currency" data-bind="formatNumber: originalBudget, currency: currency"></span>
+                    </p>
+                    <p class="labelledNumber smallLabelledNumber">
+                        <span class="title">Overført</span>
+                        <br />
+                        <span class="number currency" data-bind="formatNumber: transferred, currency: currency"></span>
+                    </p>
+                </div>
+            </div>
+            <table data-bind="foreach: fixedBudgets" class="postingList">
+                <tr>
+                    <td class="description" data-bind="summarize: { text: name, length: 15 }"></td>
+                    <td class="amount" data-bind="formatNumber: budgetMonth"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="rightColumn" data-bind="visible: showTwoColumns">
+            <p class="labelledNumber">
+                <span class="title">Faktisk</span>
+                <br />
+                <span class="number currency" data-bind="formatNumber: realized, currency: currency, css: { onBudget: status === 'onBudget', overBudget: status === 'offBudget' }"></span>
+            </p>
+            <table data-bind="foreach: postings" class="postingList">
+                <tr>
+                    <td class="description" data-bind="summarize: { text: description, length: 15 }"></td>
+                    <td class="amount" data-bind="formatNumber: $parent.budgetType === 'income' ? amount : -1*amount"></td>
+                </tr>
+            </table>
+
+            <p class="actions">
+                <a href="#" data-bind="click: goToPostings, text: hasMorePostings() ? 'Se alle ' + numberOfPostings() + ' poster &raquo;' : 'Se poster &raquo;', visible: showPostingsLink()"></a>
+            </p>
+        </div>
+
+    </div>
+</div>

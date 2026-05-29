@@ -1,0 +1,99 @@
+.sidebar h2 {
+  text-align: center;
+}
+
+.sidebar .tableFrame {
+  background: #fff;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.sidebar table .number {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sidebar .tableFrame.mtl {
+  margin-top: 20px;
+}
+
+.sidebar table {
+  width: 100%;
+}
+
+.sidebar table td {
+  padding: 6px 0;
+  line-height: 1;
+}
+
+.sidebar table .amount {
+  color: #3f3f3f;
+  text-align: right;
+}
+
+.sidebar .tableFrame .highlight .number {
+  font-size: 24px;
+}
+
+.sidebar .tableFrame .highlight td {
+  padding: 10px 0;
+}
+
+.sidebar .tableFrame .beforeHighlight td {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.sidebar .tableFrame .afterHighlight td {
+  padding-top: 10px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.sidebar table .result .amount {
+  color: #09ab58;
+}
+
+.sidebar table .result.negative .amount {
+  color: #ff5252;
+}
+
+.sidebar .extraordinaryResult {
+  margin: 20px auto 10px;
+  width: 75%;
+  border: 1px solid #ccc;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: #f3f3f3;
+  cursor: default;
+}
+
+.sidebar .extraordinaryResult p {
+  margin: 5px;
+}
+
+.sidebar .tableFrame .separatorAfter td {
+  padding-bottom: 10px;
+}
+
+.sidebar .tableFrame .separaterBefore td {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 10px;
+}
+
+.sidebar .frame {
+  margin: 10px;
+  font-size: 11px;
+  border: 1px solid #ccc;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background: #f3f3f3;
+  cursor: default;
+  overflow: hidden;
+}
+
+.sidebar .frame .btn {
+  float: right;
+  margin: 5px 5px 10px 10px;
+}

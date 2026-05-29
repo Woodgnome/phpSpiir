@@ -1,0 +1,562 @@
+<?php
+require_once(__DIR__ . "/../lib/include.php");
+require_once(__DIR__ . "/test/include.php");
+
+$DB = $GLOBALS["DB"];
+
+$db_categories = $DB->arrayQuery("SELECT * FROM categories ORDER BY sort");
+$db_subcategories = $DB->arrayQuery("
+  SELECT sc.*, c.type AS category_type FROM subcategories sc
+  JOIN categories c ON sc.category_id = c.category_id
+  ORDER BY subcategory_id
+");
+$db_tags = array_column($DB->arrayQuery("SELECT tags FROM posts WHERE tags IS NOT NULL ORDER BY date"), "tags");
+$oldest_post = $DB->rowQuery("SELECT * FROM posts ORDER BY date ASC LIMIT 1");
+$uncategorized_post_texts = array_merge(...array_map(
+  function($post){
+    return [ $post["description"] => intval($post["count"]) ];
+  },
+  $DB->arrayQuery("
+    SELECT description, COUNT(*) count FROM posts
+    WHERE subcategory_id IS NULL
+    GROUP BY description
+    ORDER BY date
+  ")
+));
+$last_upload = $_ENV["LAST_UPLOAD"]; // TODO
+$consumption_posts_count = $_ENV["CONSUMPTION_POSTS_COUNT"]; // TODO
+$consumption_posts_categorized_count = $_ENV["CONSUMPTION_POSTS_CATEGORIZED_COUNT"]; // TODO
+$categorization_completion = $_ENV["CATEGORIZATION_COMPLETED"]; // TODO
+$start_month = date("Ym", strtotime($oldest_post["date"]));
+$tags = array_unique(array_merge(...array_map(function($tags){ return explode(";", $tags); }, $db_tags)));
+
+$user_service_data = [
+  "oldestPosting" => timestring(strtotime($oldest_post["date_custom"] ?? $oldest_post["date"])),
+  "hasPostings" => !empty($oldest_post),
+  "showExcludedPostings" => true, // TODO
+  "joyRideSteps" => [
+    "deletecards" => 1,
+    "spiirtreats" => 2,
+    "spiirchallenges" => 1,
+    "primarychallenge" => 1,
+    "budgetPageJoyRide" => 3,
+    "welcomeToSpiirJoyRide" => 2,
+    "automaticSynchronization" => 2,
+    "aonInsuranceUpsellJoyRide" => 1,
+    "aonInsuranceCampaignJoyRide" => 1,
+  ],
+  "categorizationCompletion" => $categorization_completion,
+  "name" => NULL,
+  "email" => $_ENV["EMAIL"],
+  "lastUpload" => $last_upload,
+  "consumptionPostingsCount" => $consumption_posts_count,
+  "consumptionPostingsCategorized" => $consumption_posts_categorized_count,
+  "emailVerified" => false,
+  "emailVerificationRequired" => false,
+  "documentCount" => 0,
+  "documentsEnabled" => false,
+  "twoFactorEnabled" => false,
+  "legalRegion" => "EEA",
+  "languageCode" => "da",
+];
+
+$session = [
+  "user" => $user_service_data,
+  "appInfo" => [
+    "appName" => "Spiir",
+    "legalName" => "Mastercard OB Services Europe A/S",
+    "supportEmail" => "support@spiir.dk",
+    "termsUrl" => "https://www.spiir.com/terms/user-terms",
+    "privacyPolicyUrl" => "https://www.spiir.com/terms/privacy-policy",
+    "websiteUrl" => "https://www.spiir.dk/",
+    "helpUrl" => "https://help.spiir.dk/",
+  ],
+  "isLegacyPage" => true,
+];
+
+$category_options = array_map(function($db_category){
+  return [
+    "label" => $db_category["name"],
+    "value" => $db_category["category_id"],
+    "selectable" => false,
+    "submenu" => array_map(
+      function($db_subcategory) use($db_category){
+        return [
+          "label" => $db_subcategory["name"],
+          "value" => $db_subcategory["subcategory_id"],
+          "aliases" => !empty($db_subcategory["hints"]) ? explode(";", $db_subcategory["hints"]) : [],
+          "tag" => $db_category["type"] == "Income" ? "income" : ($db_subcategory["expense_type"] == "Fixed" ? "fixed" : ""),
+          "selectable" => true,
+        ];
+      },
+      get_categories($db_category["category_id"])
+    ),
+  ];
+}, $db_categories);
+
+$categories = array_map(function($db_category){
+  return [
+    "id" => $db_category["category_id"],
+    "name" => $db_category["name"],
+    "categoryType" => $db_category["type"],
+    "sortingPosition" => intval($db_category["sort"]),
+  ];
+}, $DB->arrayQuery("SELECT * FROM categories ORDER BY category_id"));
+
+$subcategories = array_map(function($db_subcategory) use($db_categories){
+  foreach ($db_categories as $db_category){
+    if ($db_subcategory["category_id"] == $db_category["category_id"]){
+      $category_type = $db_category["type"];
+      break;
+    }
+  }
+  return [
+    "id" => $db_subcategory["subcategory_id"],
+    "name" => $db_subcategory["name"],
+    "categoryId" => $db_subcategory["category_id"],
+    "expenseType" => $db_subcategory["expense_type"],
+    "categoryType" => $category_type,
+    "hints" => $db_subcategory["hints"],
+  ];
+}, $db_subcategories);
+
+?>
+<!doctype html>
+<html class="legacyPage appLayout" lang="da">
+
+<head>
+    <meta charset="utf-8">
+
+
+    <title>Poster</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+    <link href="/Content/Css/SpiirApplication.css?v=cA9z2Jk3xgOQExJ_mMgPaceqF-k" rel="stylesheet" type="text/css" media="screen,print, projection" />
+
+    <script type="text/javascript"> var onReady = []; </script>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta property="og:image" content="/Content/Images/logo.png"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="Spiir"/>
+    <meta name="description"/>
+    
+    
+
+</head>
+
+<body>
+<div class="page">
+    
+
+
+
+
+<div class="mainNavigation">
+    <ul>
+                <li class="">
+                    <a class="overview" href="/">
+                        <svg viewBox="0 0 33 33" class="icon">
+                            <use xlink:href="#icon-overview"></use>
+                        </svg>
+                        Overblik
+                    </a>
+                </li>
+                <li class="">
+                    <a class="budget" href="/budgetter">
+                        <svg viewBox="0 0 33 33" class="icon">
+                            <use xlink:href="#icon-budget"></use>
+                        </svg>
+                        Budget
+                    </a>
+                </li>
+                <li class="selected">
+                    <a class="posting" href="/poster">
+                        <svg viewBox="0 0 33 33" class="icon">
+                            <use xlink:href="#icon-posting"></use>
+                        </svg>
+                        Poster
+                    </a>
+                </li>
+                <li class="">
+                    <a class="account" href="/konti">
+                        <svg viewBox="0 0 33 33" class="icon">
+                            <use xlink:href="#icon-account"></use>
+                        </svg>
+                        Konti
+                    </a>
+                </li>
+    </ul>
+    <ul class="secondary">
+    </ul>
+</div>
+
+
+<div class="topPanel" data-bind="component: $data">
+    <div class="menuWrapper">
+        <div class="menu">
+            <div class="topBar"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var spiirCompat_topPanelMenu = [{"selected":true,"url":"/poster","title":"Poster"}];
+</script>
+
+
+
+
+<div class="content twoColumnContent">
+    <div class="mainWrapper">
+        <div class="main">
+            <div class="postingFilterBarWrapper">
+                <div class="filterBar postingFilters postingFilterBar">
+    <ul class="leftPane">
+        <li>Viser</li>
+        <li data-bind="component: PostingFilter"></li>
+        <li>fra</li>
+        <li data-bind="component: DateFilter"></li>
+        <li>med teksten</li>
+        <li data-bind="component: TextFilter">
+        </li>
+    </ul>
+    <a href="#" data-bind="click: reset" class="reset" title="Nulstil filtre"></a>
+</div>
+
+                <div class="postingStatistics" style="display: none">
+    <p class="box tr">
+        Antal poster
+        <br />
+        <span class="number" data-bind="text: postingsCount"></span>
+    </p>
+    <p class="box tl">
+        Ikke kategoriserede
+        <br />
+        <span class="number" data-bind="text: postingsNotCategorized"></span>
+    </p>
+    <p class="box bl">
+        Samlet beløb
+        <br />
+        <span class="number" data-bind="text: total"></span> <span class="currency" data-bind="text: currency.symbol"></span>
+    </p>
+    <p class="box br">
+        Gennemsnitsbeløb
+        <br />
+        <span class="number" data-bind="text: average"></span> <span class="currency" data-bind="text: currency.symbol"></span>
+    </p>
+</div>
+
+            </div>
+            <section>
+                <div id="postings">
+                    <div data-bind="visible: !loading() && postings().length == 0" style="display: none">
+                        <div class="emptyInfo">
+    <h3>Ups... Spiir kunne ikke finde nogen poster til dig</h3>
+    <p>Hvis du mener, at der skulle have været vist nogen poster her, så undersøg lige om</p>
+    <ul class="simpleList">
+        <li>dine søgeord indeholder slå- eller stavefejl. Eks. har du skrevet <em>rma</em>, hvor der skulle stå <em>rema</em>?</li>
+        <li>dine filtre snævrer mulighederne for meget ind. Eks. har du valgt en kategori, hvori der ikke er nogen poster?</li>
+    </ul>
+    <p class="bottom">Hvis du stadig er i tvivl om, hvorfor du har fået denne side, så <a href="mailto:support@spiir.dk">kontakt vores support</a></p>
+</div>
+
+                    </div>
+                    <div class="postingTableContainer">
+                        <div data-bind="visible: postings().length > 0" style="display: none">
+                            <table class="postings dataTable" id="postingsTable" cellspacing="0">
+    <thead>
+        <tr>
+            <th><input type="checkbox" style="margin-right: 10px;" /></th>
+            <th><a href="#" data-bind="click: function() { sortBy('Date') }" title="Sorter efter dato">Dato</a></th>
+            <th><a href="#" data-bind="click: function() { sortBy('Description') }"  title="Sorter efter beskrivelse">Beskrivelse</a></th>
+            <th colspan="5"><a href="#" data-bind="click: function() { sortBy('Category') }"  title="Sorter efter kategori">Kategori</a></th>
+            <th><a href="#" data-bind="click: function() { sortBy('Amount') }"  title="Sorter efter beløb">Beløb</a></th>
+        </tr>
+    </thead>
+    <tbody data-bind="template: { name: 'postingRowTemplate', foreach: postings }"></tbody>
+</table>
+
+
+
+                        </div>
+                        <div class="loading" data-bind="animated: {effect: 'fade', visible: loading, speed: 'fast'}"><div class="loadingSpinner"></div></div>
+                    </div>
+                </div>
+                <p class="pager" data-bind="visible: showPager">
+    <a data-bind="visible: hasPrevious, click: previous" href="#">Forrige side</a>
+    &nbsp;
+    Viser <span data-bind="text: currentRange"></span> ud af <span data-bind="text: initialRecordCount"></span>
+    &nbsp; <a data-bind="visible: hasNext, click: next" href="#">Næste side</a>
+</p>
+
+
+            </section>
+        </div>
+    </div>
+    <aside>
+        <section style="min-height: 80px;">
+            <p id="automaticCategorizationButton" data-bind="animated: { visible: visible, effect: 'fade' }" style="display: none; text-align: center; margin: 10px 0;">
+                <a href="#" class="btn btn-primary btn-large" data-bind="click: click">
+                    <span style="display: inline-block; line-height: 15px; text-align: left; margin-top: 3px;">
+                        Kategorisér automatisk
+                        <br/>
+                        <small style="font-size: 11px" data-bind="text: subtitle"></small>
+                    </span>
+                </a>
+            </p>
+        </section>
+        <div>
+            <div class="postingSidebar separatorTop">
+            </div>
+        </div>
+    </aside>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+    
+    <div class="modal blackModal automaticCategorizationModal" id="automaticCategorization" style="display: none;">
+    <h3>Automatisk kategorisering</h3>
+    <p>Vælg de poster du ønsker at Spiir kategoriserer automatisk.</p>
+
+    <div class="frame">
+        <div class="tableContainer">
+            <div class="loading" data-bind="visible: loading"></div>
+            <table class="dataTable postings">
+                <thead>
+                    <tr>
+                        <th class="check">
+                            <input type="checkbox" data-bind="checked: selectAll" />
+                        </th>
+                        <th>Dato</th>
+                        <th>Beskrivelse</th>
+                        <th>Kategori</th>
+                        <th>Beløb</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="template: {name: 'automaticCategorizationPostingTemplate', foreach: postings}"></tbody>
+            </table>
+            <div class="emptyInfo" data-bind="visible: showEmptyInfo">
+                <h3>Du har ingen poster som kan kategoriseres automatisk</h3>
+                <p>Spiir kan desværre ikke kategorisere nogle poster automatisk lige nu.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <p class="right" data-bind="css: { waitingActions: saving }">
+            <button type="button" data-bind="click: save, disable: saving" class="btn btn-primary">Gem</button>
+        </p>
+    </div>
+</div>
+
+<script type="text/x-jquery-tmpl" id="automaticCategorizationPostingTemplate">
+    <tr>
+        <td class="check"><input type="checkbox" data-bind="checked: checked" /></td>
+        <td class="date">${Utilities.formatDate("%d-%m-%Y", date)}</td>
+        <td class="description">${description}</td>
+        <td>${subcategoryName}</td>
+        <td class="price">${Utilities.formatPrice(amount)}</td>
+    </tr>
+</script>
+
+
+    <div class="automaticCategorizationTooltip" id="automaticCategorizationTooltip">
+    <div class="frame">
+        <p class="header"></p>
+        <p>
+            <span data-bind="text: count"></span> poster med teksten:
+            <br />
+            <strong data-bind="text: description"></strong>
+        </p>
+        <p>
+            Kan kategoriseres som:
+            <br />
+            <strong data-bind="text: subcategoryName"></strong>
+        </p>
+        <p>
+            <a href="#" data-bind="click: categorize" class="btn btn-primary">Kategorisér automatisk</a>
+        </p>
+        <p>
+            el. <a href="#" data-bind="click: showPostings">gennemse poster</a>
+        </p>
+        <p class="shortcuts">
+            Enter: Videre, Ctrl+K: Kategorisér automatisk
+        </p>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    onReady.push(function() {
+        UserService.init(<?php echo json_encode($user_service_data); ?>);
+    });
+    var S = S || {};
+    S.Config = S.Config || {};
+</script>
+
+<script src="/oldconfig.js?;5326009960"> </script>
+
+<script type="text/javascript">
+    var UrlConfig = S.Config.urls;
+</script>
+
+<script src="/Content/Scripts/Base.min.js?v=M-TUTV7LZmpTkpWmn8Tb0xsm2gE"></script>
+
+
+
+    <script src="/Client/lib/require.js?v=S7R5MCkoHo6F5XZtf7bfQiaQioo"></script>
+    <script type="text/javascript">
+        require.config({"urlArgs":"","baseUrl":"/Client","waitSeconds":20,"paths":{"config":"/config.5326009960","oldScripts":"/Content/Scripts"}});
+        requirejs.onError = function(err) {
+            if (err.requireType === 'timeout') {
+                if (window.jQuery) {
+                    jQuery.post('/ClientError/Log', { message: 'Require JS Timeout (Client).\nModules: ' + err.requireModules, url: location.href });
+                }
+            }
+        };
+        define('session', [], <?php echo json_encode($session); ?>);
+        require(['/Client/oldMain.js']);
+        Settings.init();
+    </script>
+
+   
+    <script src="/Content/Scripts/Postings.min.js?v=sy64XduNSQEF2z8dyWONdycVz1s"></script>
+
+    <script src="/Template/TemplateSet/Postings"></script>
+
+    <script type="text/javascript">
+        S.Config.categoryOptions = <?php echo json_encode($category_options); ?>;
+        S.Config.categories = <?php echo json_encode($categories); ?>;
+        S.Config.subcategories = <?php echo json_encode($subcategories); ?>;
+        S.Config.currency = {"id":"DKK","symbol":"kr","shortFormat":"{sign}{amount} {symbol}","longFormat":"{sign}{amount} {symbol}"};
+
+        $(document).bind('spiir:ready', function() {
+            TagService.init(<?php echo json_encode($tags); ?>);
+
+            PostingStatistics.init();
+            var postingSidebar = new S.UI.Postings.PostingSidebar({});
+
+            PostingsEditor.init(postingSidebar);
+            PostingsTable.init(postingSidebar);
+
+            PostingsController.init({
+                uncategorizedPostingTexts: <?php echo json_encode($uncategorized_post_texts); ?>,
+                baseUrl: '/poster',
+                startMonth: '<?php echo $start_month; ?>'
+            });
+            AutomaticCategorization.init();
+            AutomaticCategorizationButton.init();
+            AutomaticCategorizationTooltip.init({ postingSidebar: postingSidebar, textsToSkip: ["mobilepay","mpayover","vipps til","vipps fra","swish mottagen","swish skickad","klarna"]});
+            Pager.init();
+        });
+    </script>
+
+    <script type="text/x-jquery-tmpl" id="postingRowTemplate">
+        <tr id="${id}" class="{{if isSubcategoryLocked}}subcategoryLocked{{/if}} {{if isHidden}}isHidden{{/if}}">
+            <td class="check"><input type="checkbox" /></td>
+            <td class="date">
+                ${dateFormatted}
+            </td>
+            <td class="description">
+                ${description}
+                <span class="comment" data-bind="text: comment() ? '(' + comment() + ')' : ''"></span>
+            </td>
+            <td class="category">
+                {{if isSubcategoryLocked}}
+                <span class="subcategoryLabel" title="Spiir har automatisk genkendt denne post og en modpost som 'kontooverførsel'. Du kan ikke ændre kategorien.">${subcategoryName}</span>
+                {{else}}
+                <div class="scWrapper">
+                    <span data-bind="text: subcategoryName" class="subcategoryLabel">&nbsp;</span>
+                    <input class="subcategory" value="" />
+                </div>
+                {{/if}}
+            </td>
+            <td class="iconcell"><span class="icon icon-split" data-bind="visible: isSplitChild" title="Denne post er en del af et split">S</span></td>
+            <td class="iconcell"><span class="icon" data-bind="fadeVisible: isExtraordinaryFn" title="Ekstraordinær">E</span></td>
+            <td class="iconcell"><span class="icon" data-bind="attr: {title: 'Dato ændret fra ' + originalDateFormated + ' til ' + newDateFormated()},fadeVisible:dateChanged">D</span></td>
+            <td class="iconcell"><span class="icon icon-bilag" data-bind="visible: documentId" title="Denne post er vedhæftet et bilag">B</span>  </td>
+            <td class="price">${Utilities.formatPrice(amount, true)}</td>
+        </tr>
+    </script>
+
+
+   <script type="text/javascript">
+        onReady.push(function () {
+            $(window).bind('resize', function () {
+                var windowHeight = $(window).height();
+                $('.page').css('min-height', windowHeight);
+                var content = $('.page > .content, .page > :not(.topPanel) .content');
+                content.css('min-height', windowHeight - parseInt(content.css('padding-top'), 10));
+            }).triggerHandler('resize');
+        });
+    </script>
+
+
+
+    <script type="text/javascript">
+        _.each(onReady, function(fn) { fn(); });
+        $(document).triggerHandler('spiir:ready');
+    </script>
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="height: 0; width: 0; position: absolute; visibility: hidden">
+    <symbol id="icon-overview" viewBox="0 0 33 33">
+        <title>Overblik</title>
+        <path d="M4.22 19.125c-.88 0-1.588-.7-1.588-1.56 0-.857.708-1.558 1.587-1.558.882 0 1.59.7 1.59 1.558 0 .86-.708 1.56-1.59 1.56zm0-5.118c-1.98 0-3.588 1.59-3.588 3.56 0 1.967 1.608 3.558 3.587 3.558 1.98 0 3.59-1.59 3.59-3.56 0-1.967-1.61-3.558-3.59-3.558zM13.557 30.497c-.88 0-1.59-.7-1.59-1.56 0-.858.71-1.558 1.59-1.558.88 0 1.59.7 1.59 1.558 0 .86-.71 1.56-1.59 1.56zm0-5.118c-1.98 0-3.59 1.59-3.59 3.558 0 1.97 1.61 3.56 3.59 3.56 1.98 0 3.59-1.59 3.59-3.56s-1.61-3.56-3.59-3.56zM19.677 6.116c-.88 0-1.59-.7-1.59-1.558 0-.858.71-1.558 1.59-1.558.88 0 1.59.7 1.59 1.558 0 .858-.71 1.558-1.59 1.558zm0-5.116c-1.98 0-3.59 1.59-3.59 3.558 0 1.968 1.61 3.558 3.59 3.558 1.98 0 3.59-1.59 3.59-3.558 0-1.968-1.61-3.558-3.59-3.558zM29.408 20.617c-.878 0-1.587-.7-1.587-1.558 0-.858.71-1.56 1.588-1.56.882 0 1.592.7 1.592 1.56 0 .857-.71 1.558-1.592 1.558zm0-5.116c-1.978 0-3.587 1.592-3.587 3.56 0 1.967 1.61 3.558 3.588 3.558 1.98 0 3.592-1.59 3.592-3.56 0-1.967-1.61-3.557-3.592-3.557z" />
+        <path d="M10.85 27.834c.338.437.965.518 1.403.18.437-.336.52-.964.18-1.4l-5.47-7.1c-.337-.436-.965-.518-1.402-.18-.437.337-.518.965-.18 1.402l5.47 7.098zm9.45-20.49c.125-.54-.21-1.077-.748-1.202s-1.075.21-1.2.748l-4.48 19.263c-.125.538.21 1.075.748 1.2.537.125 1.075-.21 1.2-.747L20.3 7.343zm6.556 10.332c.294.468.91.608 1.38.314.466-.294.607-.91.313-1.38L22.242 6.585c-.294-.468-.912-.608-1.38-.314-.467.294-.607.91-.313 1.38l6.306 10.026z" />
+    </symbol>
+
+    <symbol id="icon-insurance" viewBox="0 0 33 33">
+        <title>Forsikring</title>
+        <path d="M16 30C8.268 30 2 23.73 2 16 2 8.264 8.266 2 16 2c7.733 0 14 6.265 14 14 0 7.73-6.268 14-14 14zm0-30C7.162 0 0 7.16 0 16c0 8.836 7.163 16 16 16s16-7.165 16-16c0-8.84-7.162-16-16-16z" />
+        <path d="M16 23.888c-4.355 0-7.888-3.535-7.888-7.89 0-4.355 3.53-7.885 7.888-7.885 4.355 0 7.885 3.53 7.885 7.886 0 4.354-3.532 7.888-7.885 7.888zM25.043 12C23.906 9.43 21.706 7.437 19 6.576v-5.32c0-.552-.448-1-1-1s-1 .448-1 1v4.907c-.33-.033-.662-.05-1-.05-.685 0-1.354.07-2 .202v-5.06c0-.55-.448-1-1-1s-1 .45-1 1v5.7C9.754 7.95 7.948 9.755 6.954 12H1.237c-.552 0-1 .448-1 1s.448 1 1 1h5.077c-.133.646-.202 1.314-.202 2 0 .337.017.67.05 1H1.237c-.552 0-1 .448-1 1s.448 1 1 1h5.34c.86 2.705 2.854 4.906 5.423 6.045v5.74c0 .55.448 1 1 1s1-.45 1-1v-5.1c.646.133 1.315.203 2 .203.338 0 .67-.017 1-.05v4.946c0 .552.448 1 1 1s1-.448 1-1v-5.36c3.046-.97 5.452-3.377 6.42-6.424h5.342c.553 0 1-.448 1-1s-.447-1-1-1h-4.927c.033-.33.05-.663.05-1 0-.686-.07-1.354-.202-2h5.08c.552 0 1-.448 1-1s-.448-1-1-1h-5.72z" />
+        <path d="M16 30C8.268 30 2 23.73 2 16 2 8.264 8.266 2 16 2c7.733 0 14 6.265 14 14 0 7.73-6.268 14-14 14zm0-30C7.162 0 0 7.16 0 16c0 8.836 7.163 16 16 16s16-7.165 16-16c0-8.84-7.162-16-16-16z" />
+    </symbol>
+
+    <symbol id="icon-budget" viewBox="0 0 33 33">
+        <desc>Budget</desc>
+        <g transform="translate(0, 5)">
+            <path d="M22.4976391,10.6076144 C25.0578299,13.1678052 25.4841539,17.1372375 23.5967648,20.1862806 C23.3525251,20.5808454 23.4118105,21.0915922 23.7399373,21.419719 L28.2654207,25.9452024 C28.6931534,26.3729351 29.3997497,26.3259337 29.7670607,25.8453163 C34.6300245,19.4822487 34.0738519,10.4476224 28.3657415,4.73951201 C22.0877493,-1.53848019 11.9108526,-1.53731436 5.63270043,4.74083783 C-0.0755167844,10.4490551 -0.633210769,19.4818899 4.2282235,25.8443486 C4.59550954,26.3250384 5.30216495,26.3720812 5.72992762,25.9443186 L10.2549691,21.4192771 C10.583027,21.0912192 10.6423644,20.580606 10.3982789,20.1860604 C8.51182483,17.136751 8.93789684,13.165659 11.4977092,10.6058466 C14.5353303,7.56822558 19.4595823,7.56955761 22.4976391,10.6076144 Z M8.6974457,21.2382802 L8.84075551,20.0050635 L4.31571405,24.530105 L5.81741817,24.630075 C1.5619166,19.0606378 2.05021737,11.151748 7.046914,6.1550514 C12.5440901,0.657875266 21.4546569,0.656854495 26.9515279,6.15372557 C31.9479831,11.1501807 32.4349582,19.0607432 28.1779943,24.630875 L29.6796343,24.5309889 L25.1541509,20.0055055 L25.2973235,21.2389439 C27.6695005,17.4067347 27.1333708,12.414919 23.9118527,9.19340085 C20.0929185,5.37446668 13.9023366,5.37279211 10.0834957,9.19163308 C6.86235194,12.4127768 6.32661127,17.4060068 8.6974457,21.2382802 Z"></path>
+            <g transform="translate(19.136763, 13.053096) rotate(20) translate(-19.136763, -13.053096) translate(16.136763, 3.553096)">
+                <path d="M3.02606043,18.2286168 C4.35681204,18.2286168 5.43559936,17.1498295 5.43559936,15.8190779 C5.43559936,14.4883263 4.35681209,0.179115555 3.02606048,0.179115555 C1.69530888,0.179115555 0.616521499,14.4883263 0.616521499,15.8190779 C0.616521499,17.1498295 1.69530882,18.2286168 3.02606043,18.2286168 Z M3.02606043,16.8190779 C3.57834518,16.8190779 4.02606043,16.3713626 4.02606043,15.8190779 C4.02606043,15.2667931 3.57834518,14.8190779 3.02606043,14.8190779 C2.47377568,14.8190779 2.02606043,15.2667931 2.02606043,15.8190779 C2.02606043,16.3713626 2.47377568,16.8190779 3.02606043,16.8190779 Z"></path>
+            </g>
+        </g>
+    </symbol>
+
+    <symbol id="icon-documents" viewBox="0 0 33 33">
+        <title>Bilag</title>
+        <path d="M21.108 21.884h-1v4.42c0-.005-8.228-.01-8.228-.01.006 0 .012-3.41.012-3.41v-1H1v2h9.892l-1-1v3.42c0 1.1.89 1.99 1.988 1.99h8.24c1.098 0 1.988-.89 1.988-1.99v-3.42l-1 1H31v-2h-9.892z" />
+        <path d="M30.01 10.01c-.005 0-.01 19.953-.01 19.953 0-.007-28.01-.013-28.01-.013.004 0 .01-19.952.01-19.952 0 .005 2.954.01 2.954.01v-2H1.99C.89 8.01 0 8.9 0 10v19.965c0 1.1.89 1.987 1.99 1.987h28.02c1.098 0 1.99-.888 1.99-1.987V9.998c0-1.1-.89-1.99-1.99-1.99h-3.222v2h3.222z" />
+        <path d="M6.062 2.04c0 .005 19.844.01 19.844.01-.006 0-.01 20.935-.01 20.935h2V2.04c0-1.1-.892-1.99-1.99-1.99H6.05c-1.097 0-1.988.89-1.988 1.99v20.945h2V2.04z" />
+        <path d="M21.517 7V5H10.224v2M21.517 12v-2H10.224v2M21.517 17v-2H10.224v2" />
+    </symbol>
+
+    <symbol id="icon-posting" viewBox="0 0 33 33">
+        <title>Poster</title>
+        <path d="M1.85 7H30.15C30.067 7 30 6.933 30 6.85v18.82c0-.084.067-.152.152-.152H1.85c.082 0 .15.068.15.15V6.85c0 .083-.068.15-.15.15zM0 25.67c0 1.02.827 1.848 1.85 1.848H30.15c1.02 0 1.848-.828 1.848-1.85V6.85C32 5.83 31.172 5 30.152 5H1.85C.826 5 0 5.828 0 6.85v18.82z" />
+        <path d="M1 11v4h30v-4" />
+    </symbol>
+
+    <symbol id="icon-account" viewBox="0 0 33 33">
+        <title>Konti</title>
+        <path d="M27.016 27.08H4.98C3.347 27.08 2 25.734 2 24.098V4.98C2 3.346 3.345 2 4.98 2h22.036C28.656 2 30 3.343 30 4.98V24.1c0 1.638-1.345 2.982-2.984 2.982zm-2.016 2h2.016c2.743 0 4.984-2.24 4.984-4.982V4.98C32 2.24 29.76 0 27.016 0H4.98C2.24 0 0 2.24 0 4.98V24.1c0 2.74 2.24 4.982 4.98 4.982H6v1.33c0 .553.448 1 1 1s1-.447 1-1v-1.33h15v1.33c0 .553.448 1 1 1s1-.447 1-1v-1.33z" />
+        <path d="M24.03 16.05c-.834 0-1.51-.676-1.51-1.51 0-.837.675-1.512 1.51-1.512.837 0 1.513.676 1.513 1.512 0 .834-.677 1.51-1.512 1.51zm0-5.022c-1.94 0-3.51 1.57-3.51 3.512 0 1.94 1.57 3.51 3.51 3.51 1.94 0 3.513-1.572 3.513-3.51 0-1.94-1.572-3.512-3.512-3.512zM5 11.596c0 .552.448 1 1 1s1-.448 1-1v-6.13c0-.552-.448-1-1-1s-1 .448-1 1v6.13zm0 12.017c0 .553.448 1 1 1s1-.447 1-1v-6.13c0-.552-.448-1-1-1s-1 .448-1 1v6.13z" />
+    </symbol>
+</svg>
+
+</body>
+</html>

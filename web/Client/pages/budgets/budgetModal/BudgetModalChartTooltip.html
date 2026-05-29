@@ -1,0 +1,51 @@
+﻿<div class="introTooltip budgetTooltip" data-bind="css: { twoColumns: showRealized }">
+    <span class="arrow bottom"></span>
+
+    <div class="columns">
+        <div data-bind="css: { leftColumn: showRealized }">
+            <div data-bind="visible: !rollover()">
+                <p class="labelledNumber">
+                    <span class="title">Budget</span>
+                    <br />
+                    <span class="number currency" data-bind="formatNumber: budget, currency: currency"></span>
+                </p>
+            </div>
+
+            <div data-bind="visible: rollover">
+                <p class="labelledNumber">
+                    <span class="title">Løbende budget</span>
+                    <br />
+                    <span class="number currency" data-bind="formatNumber: rolloverBudget, currency: currency"></span>
+                </p>
+
+                <div class="rollover">
+                    <p class="mtl labelledNumber smallLabelledNumber">
+                        <span class="title">Budget (<span data-bind="text: currentMonthName"></span>)</span>
+                        <br />
+                        <span class="number currency" data-bind="formatNumber: budget, currency: currency"></span>
+                    </p>
+                    <p class="labelledNumber smallLabelledNumber">
+                        <span class="title">Overført (<span data-bind="text: lastMonthName"></span>)</span>
+                        <br />
+                        <span class="number currency" data-bind="formatNumber: fromLastMonth, currency: currency"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="rightColumn" data-bind="visible: showRealized">
+            <p class="labelledNumber">
+                <span class="title">Faktisk</span>
+                <br />
+                <span class="number currency" data-bind="formatNumber: totalRealized, currency: currency"></span>
+            </p>
+            <table data-bind="foreach: topPostings" class="postingList">
+                <tr>
+                    <td class="description" data-bind="summarize: { text: description, length: 15 }"></td>
+                    <td class="amount" data-bind="formatNumber: amount"></td>
+                </tr>
+            </table>
+            <p class="actions" data-bind="visible: morePostings">(<span data-bind="text: morePostings"></span> flere poster)</p>
+        </div>
+    </div>
+</div>

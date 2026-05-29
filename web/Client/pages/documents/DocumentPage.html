@@ -1,0 +1,48 @@
+﻿<div class="documentPage content twoColumnContent" data-bind="visible: hasDocuments()"  style="display: none">
+    <div class="mainWrapper">
+        <div class="main">
+            <header>
+                <div class="headerActions">
+                    <div class="btn-group media">
+                        <button class="btn dropdown-toggle" data-toggle="dropdown">
+                            Funktioner
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li><a href="#">Ny bilag</a></li>
+                        </ul>
+                    </div>
+                </div>               
+                <h1>Bilag</h1>
+            </header>            
+        
+            <div class="pageLoader" data-bind="animated: { effect: 'fade', visible: loading, speed: 'fast' }"><div class="loadingSpinner"></div></div>
+        </div>
+    </div>
+
+    <aside  data-bind="visible: hasDocuments() === true"  style="display: none">
+        <section>
+            <p data-bind="visible: uploadCount() > 0">Indlæser <span data-bind="text: uploadCount"></span> bilag...</p>
+        </section>
+    </aside>
+</div>
+
+<div data-bind="visible: hasDocuments() === false" class="documentPage content" style="display: none">
+    <div class="main">
+        <div class="pageIntroduction documentPageIntroduction">
+            <div class="center">
+                <h1 class="mbn">Alle dine bilag samlet ét sted</h1>
+                <p class="mtn">
+                    Gem alle dine vigtige dokumenter sikkert hos Spiir. Slut med ulæselige boner og forlagte garantibeviser. Brug Spiir til boner, kvitteringer, forsikringspolicer og alt det andet, der er vigtigt for dig. Knyt dine bilag til posterne fra netbanken, så har du 100% styr på delene i din økonomi. Læg bilagene ind fra din computer der hjemme eller direkte fra butikken med vores mobile apps.
+                </p>
+                <p class="action">
+                    <button type="button" class="btn btn-large btn-primary" data-bind="click: captureWithWebcam, visible: showCaptureWithWebcam">Tag billede med webcam</button>
+                    <!--                    <button type="button" class="btn btn-large btn-primary">Indlæs bilag fra fil</button>
+                        <button type="button" class="btn btn-large btn-primary mll">Tag billede med mobiltelefon</button>
+                        <button type="button" class="btn btn-large btn-primary mll">Send bilag med mail</button>-->
+                    eller tryk Ctrl+V for at paste
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

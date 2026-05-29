@@ -1,0 +1,15 @@
+﻿<div class="modal webcamCaptureModal">
+    <h3>Tag billede af bilag</h3>
+    
+    <div class="media">
+        <video autoplay data-bind="visible: !imageCaptured()"></video>
+        <img src="" width="640" height="480" data-bind="visible: imageCaptured">
+        <canvas style="display: none;" width="640" height="480"></canvas>
+    </div>
+    
+    <p>
+        <button class="btn btn-primary" data-bind="visible: !imageCaptured(), click: capture, disable: processing">Tag billede</button>
+        <button class="btn" data-bind="visible: imageCaptured, click: reset, disable: processing">Tag nyt billede</button>
+        <button class="btn btn-primary" data-bind="visible: imageCaptured, click: addDocument, disable: processing">Gem bilag</button>
+    </p>
+</div>

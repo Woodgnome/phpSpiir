@@ -1,0 +1,6 @@
+﻿<div class="modal wizardModal importModal">
+    <ul class="stepBullets" data-bind="foreach: bullets">
+        <li data-bind="css: { done: done, current: current }"><span class="bullet"></span> <span data-bind="text: text"></span></li>
+    </ul>
+    <div data-bind="component: wizard"></div>
+</div>

@@ -1,0 +1,8 @@
+﻿<div class="budgetModalChart">
+    <div class="historyChart" data-bind="attr: { id: chartId }">
+        <div class="loadingSpinner"></div>
+    </div>
+    <ul class="budgetPattern" data-bind="foreach: budgetPattern, visible: patternVisible">
+        <li data-bind="css: { changed: changed }, click: $parent.onPatternClick"></li>
+    </ul>
+</div>

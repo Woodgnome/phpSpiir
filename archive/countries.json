@@ -1,0 +1,102 @@
+[
+  {
+    "id": "DK",
+    "name": "Danmark"
+  },
+  {
+    "id": "CH",
+    "name": "Schweiz"
+  },
+  {
+    "id": "FI",
+    "name": "Finland"
+  },
+  {
+    "id": "FO",
+    "name": "Færøerne"
+  },
+  {
+    "id": "IS",
+    "name": "Island"
+  },
+  {
+    "id": "NO",
+    "name": "Norge"
+  },
+  {
+    "id": "SE",
+    "name": "Sverige"
+  },
+  {
+    "id": "PL",
+    "name": "Polen"
+  },
+  {
+    "id": "PT",
+    "name": "Portugal"
+  },
+  {
+    "id": "EE",
+    "name": "Estland"
+  },
+  {
+    "id": "LV",
+    "name": "Letland"
+  },
+  {
+    "id": "LT",
+    "name": "Litauen"
+  },
+  {
+    "id": "NL",
+    "name": "Holland"
+  },
+  {
+    "id": "GB",
+    "name": "Storbritannien"
+  },
+  {
+    "id": "IE",
+    "name": "Irland"
+  },
+  {
+    "id": "IT",
+    "name": "Italien"
+  },
+  {
+    "id": "SI",
+    "name": "Slovenien"
+  },
+  {
+    "id": "SK",
+    "name": "Slovakiet"
+  },
+  {
+    "id": "AT",
+    "name": "Østrig"
+  },
+  {
+    "id": "BE",
+    "name": "Belgien"
+  },
+  {
+    "id": "DE",
+    "name": "Tyskland"
+  },
+  {
+    "id": "ES",
+    "name": "Spanien"
+  },
+  {
+    "id": "FR",
+    "name": "Frankrig"
+  },
+  {
+    "id": "CZ",
+    "name": "Tjekkiet"
+  },
+  {
+    "id": "XX",
+    "name": "Andre"
+  }
+]

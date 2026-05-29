@@ -1,0 +1,37 @@
+﻿<div class="modal wizardModal budgetMissingDataModal">
+    <h3>Er jeg klar til budget?</h3>
+    <div data-bind="visible: state() === 'ReadyForAuto'">
+        <p class="introduction">Spiir er klar til automatisk at oprette dit budget.</p>
+        <p class="mtl">Du har gjort alt som er krævet for at fortsætte:</p>
+    </div>
+    <div data-bind="visible: state() === 'ShowStopper'">
+        <p class="introduction">Spiir ved ikke nok for at kunne oprette dit budget.</p>
+        <p class="mtl">For at hjælpe Spiir, skal du gøre følgende:</p>
+    </div>
+    <div data-bind="visible: state() === 'PreventsAutoBudget'">
+        <p class="introduction">Spiir ved ikke nok for at kunne oprette dit budget automatisk.</p>
+        <p class="mtl">For at hjælpe Spiir, kan du gøre følgende:</p>
+    </div>
+        <div data-bind="visible: state() === 'Warning'">
+        <p class="introduction">Spiir er klar til automatisk at oprette dit budget.</p>
+        <p class="mtl">Spiir er dog lidt i tvivl om dine data er helt i orden:</p>
+    </div>
+    <ul data-bind="foreach: tasks" class="dataTasks">
+        <li data-bind="css: { done: state === 'ReadyForAuto', warning: state === 'Warning' || state === 'PreventsAutoBudget', notDone: state === 'ShowStopper' }">
+            <p data-bind="text: title" class="title"></p>
+            <p data-bind="text: issue, visible: issue" class="issue"></p>
+        </li>
+    </ul>
+    
+    <div data-bind="visible: state() === 'PreventsAutoBudget'">
+        <p class="mtl">Du kan vælge at fortsætte og selv sætte dit budget op ved at indtaste indtægter, regninger og lave mål for dit forbrug. Når budgettet er sat op, så vil det automatisk holde sig selv ajour så du nemt kan se, hvordan din plan for pengene matcher virkeligheden.</p>
+    </div>
+    
+    <div class="actions">
+        <p class="right" data-bind="css: { waitingActions: processing }">
+            <button type="button" class="btn" data-bind="visible: state() === 'PreventsAutoBudget', click: createBudgetManually, disable: processing">Læg budget selv</button>
+            <button type="button" class="btn btn-primary" data-bind="click: complete, disable: processing, text: buttonText"></button>
+        </p>
+    </div>
+
+</div>
