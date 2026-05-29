@@ -1,0 +1,9 @@
+﻿<div data-bind="foreach: accountTypeViews">
+    <div class="accountTypeView">
+        <h2 class="mbn" data-bind="text: title"></h2>
+        <p class="mtn" data-bind="visible: subTitle, text: subTitle"></p>
+        <div data-bind="component: accountGroups"></div>
+    </div>
+</div>
+
+<p data-bind="visible: showNoActiveAccountsMessage">Du har ingen aktive konti.</p>

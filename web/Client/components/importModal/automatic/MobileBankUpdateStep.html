@@ -1,0 +1,22 @@
+﻿<div data-bind="visible: visible">
+    <h4>Konti hos <strong data-bind="text: bank.name"></strong></h4>
+    <ul class="notifications" data-bind="visible: errorMessage">
+        <li class="error">
+            <div class="icon"></div>
+            <p data-bind="html: errorMessage"></p>
+        </li>
+    </ul>
+    <div data-bind="foreach: accounts">
+        <div class="fileView">
+            <div class="bar">
+                <div class="column leftColumn">
+                    <div class="icon uploading"></div>
+                </div>
+                <div class="column primary">
+                    <div class="columnTitle">Konto</div>
+                    <div class="columnContent" data-bind="text: accountName"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

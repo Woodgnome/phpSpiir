@@ -1,0 +1,24 @@
+﻿
+<div class="introTooltip extraordinaryPostingsTooltip">
+    <div class="arrow"></div>
+    <h3>Ekstraordinære poster</h3>
+    <a href="#" class="close" data-bind="click: hide"></a>
+
+    <div class="tableFrame">
+        <table>
+            <tr>
+                <td>Indkomst</td>
+                <td class="amount"><span class="number currency" data-bind="formatNumber: income, currency: currency"></span></td>
+            </tr>
+            <tr class="beforeHighlight">
+                <td>Udgifter</td>
+                <td class="amount"><span class="number currency" data-bind="formatNumber: expenses, currency: currency"></span></td>
+            </tr>
+            <tr class="highlight">
+                <td>Ekstraordinære ialt</td>
+                <td class="amount"><span class="number currency" data-bind="formatNumber: total, currency: currency"></span></td>
+            </tr>
+        </table>
+    </div>
+    <p class="actions"><a href="#" data-bind="attr: { href: postingsUrl }">Se poster...</a></p>
+</div>

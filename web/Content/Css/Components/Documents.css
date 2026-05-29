@@ -1,0 +1,225 @@
+.documents {
+  margin: 0 -5px 0 0;
+}
+
+.documents a {
+  outline: 0;
+}
+
+.documents .documentListItem {
+  width: 33%;
+  float: left;
+}
+
+.documents .documentListItemInner {
+  height: 245px;
+  padding: 10px;
+  background: #eee;
+  border: 1px solid #b6b5b5;
+  position: relative;
+  margin-top: 25px;
+  margin-right: 5px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  border-radius: 4px;
+}
+
+.documents .dateAmountWrapper {
+  height: 20px;
+}
+
+.documents .label {
+  color: #333;
+  font-size: 14px;
+}
+
+.documents input {
+  width: 78px;
+  border: 1px solid #dfdfdf;
+}
+
+.documents input.dateinput {
+  width: 90%;
+  font-size: 12px;
+}
+
+.documents .image {
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.documents .loading {
+  background: url(Shared/loader.gif?v=ZU2g2i_TZ_FXBfPF0hQwf-6qejs) no-repeat center center;
+}
+
+.documents .date {
+  float: left;
+  padding: 0 3px 3px 0;
+  width: 100px;
+}
+
+.documents .descriptionWrapper {
+  margin: 10px 0;
+  height: 20px;
+  overflow: hidden;
+}
+
+.documents .descriptioninput {
+  display: block;
+  width: 279px;
+}
+
+.documents .check {
+  background: url("Document/check.png?v=ZU2g2i_TZ_FXBfPF0hQwf-6qejs") no-repeat transparent;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+
+.documents .removeIcon {
+  background: url("Document/trashcan.png?v=ZU2g2i_TZ_FXBfPF0hQwf-6qejs") no-repeat transparent;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+}
+
+.documents .editIcon {
+  background: url("Document/edit.png?v=ZU2g2i_TZ_FXBfPF0hQwf-6qejs") no-repeat transparent;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+
+.documents .postingsIcon {
+  float: left;
+  background: url("Document/attach.png?v=ZU2g2i_TZ_FXBfPF0hQwf-6qejs") no-repeat transparent;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.documents .attachPostingHandle {
+  padding: 4px 20px 4px 6px;
+  background: #eee url(Document/handleArrows.png?v=ZU2g2i_TZ_FXBfPF0hQwf-6qejs) no-repeat right -22px;
+  border: 1px solid #aaa;
+  position: relative;
+  border-radius: 3px;
+  color: #000;
+  font-size: 11px;
+}
+
+.documents .attachPostingHandle:hover {
+  text-decoration: none;
+  background-color: #f9f9f9;
+}
+
+.documents .activeAttachedPostingsHandle {
+  background-position: right 6px;
+  border-bottom: 0;
+  padding-bottom: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  z-index: 12;
+}
+
+.documents .activeAttachedPostingsHandle:hover {
+  background-color: #f2f2f2;
+}
+
+.documents .attachedPostingsFoldOut {
+  position: absolute;
+  background: #f9f9f9;
+  width: 536px;
+  z-index: 11;
+  border: 1px solid #aaa;
+  position: absolute;
+  border-radius: 0 5px 5px 5px;
+  box-shadow: 3px 2px 12px #888;
+}
+
+.documents .removePosting {
+  width: 16px;
+  height: 16px;
+  background: url(PostingFilters/delete.gif?v=ZU2g2i_TZ_FXBfPF0hQwf-6qejs) no-repeat center 7px;
+  display: inline-block;
+  float: right;
+  margin-top: -5px;
+}
+
+.documents .removePosting:hover {
+  background-position: center -13px;
+}
+
+.icon-alreadyattached {
+  font-size: 8px;
+  padding: 0 2px;
+  background: #999;
+  color: #fff;
+  vertical-align: 2px;
+  float: right;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.documentPageUpsell h2 {
+  font-size: 36px;
+  padding-top: 10px;
+}
+
+@media screen and (max-width:1150px) {
+  .documentPageUpsell h2 {
+    font-size: 26px;
+    padding-top: 20px;
+  }
+}
+
+.documentPageUpsell .introHeader {
+  margin-bottom: 50px;
+  background: url(Document/upsell-arrow.png?v=ZU2g2i_TZ_FXBfPF0hQwf-6qejs) no-repeat right 10px;
+}
+
+.documentPageUpsell .introText {
+  padding-left: 380px;
+  position: relative;
+}
+
+.documentPageUpsell .introText a {
+  text-decoration: underline;
+}
+
+.documentPageUpsell .introScreenshot {
+  width: 426px;
+  height: 202px;
+  background: url(Document/upsell-preview.png?v=ZU2g2i_TZ_FXBfPF0hQwf-6qejs) no-repeat 0 0;
+  position: absolute;
+  left: -35px;
+  top: 0;
+}
+
+.action.documentMobileLinks a {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.action.documentMobileLinks a div {
+  width: 140px;
+  margin: 20px 10px;
+  display: inline-block;
+}
+
+.sidebarUploadButtonWrapper {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.sidebarUploadButton {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}

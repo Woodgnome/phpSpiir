@@ -1,0 +1,19 @@
+﻿<div class="modal wizardModal">
+    <h3>Slet budgetter</h3>
+    
+    <div class="form line fieldLine">
+        <p>
+            Hvis du ønsker at slette dine budgetter, så kan du gøre det her.
+            Det kan være en god ide, hvis du har ændret væsentligt på dine data, og du ønsker, at Spiir skal genberegne dine budgetter forfra.
+        </p>
+        <p>
+            Bemærk at alle budgetter fra tidligere år også vil blive slette, og disse kan ikke genoprettes.
+        </p>
+        <div class="actions">
+            <p class="right" data-bind="css: { waitingActions: processing }">
+                <button type="button" class="btn" data-bind="click: close, disable: processing">Luk</button>            
+                <button type="button" class="btn btn-primary" data-bind="click: deleteAllBudgets, disable: processing">Slet alle budgetter</button>            
+            </p>
+        </div>
+    </div>
+</div>

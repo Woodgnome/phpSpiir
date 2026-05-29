@@ -1,0 +1,89 @@
+﻿<div class="mobileBankAccountStep" data-bind="visible: visible">
+    <div data-bind="visible: totalAccounts() > 0 && accounts().length == 0">
+        <h4>Ingen nye konti</h4>
+        <p>Alle konti er allerede i Spiir.</p>
+
+        <p class="topActions mtl">
+            <button class="btn btn-primary" data-bind="click: complete">Luk</button>
+        </p>
+    </div>
+
+    <div data-bind="visible: totalAccounts() == 0">
+        <h4>Ingen konti fundet</h4>
+        <p>Spiir kunne ikke hente nogen konti fra din netbank, dette kan skyldes at du mangler at tilmelde dig mobil bank i din netbank, eller at der er nye aftaler som du skal godkende.</p>
+
+        <p class="topActions mtl">
+            <button class="btn btn-primary" data-bind="click: complete">Luk</button>
+        </p>
+    </div>
+
+    <div data-bind="visible: accounts().length > 0">
+        <h4>Konti hos <strong data-bind="text: bank.name"></strong></h4>
+
+        <p class="subtitle">
+            Vælg dem du vil have med i Spiir.
+        </p>
+
+        <div data-bind="foreach: accounts">
+            <div class="fileView">
+                <label class="bar">
+                    <div class="column leftColumn">
+                        <input type="checkbox" data-bind="checked: selected, enable: accountIsNew, event: { change: $parent.onAccountSelected }" />
+                    </div>
+                    <div class="column primary fixedWidth">
+                        <div class="columnTitle">Konto</div>
+                        <div class="columnContent" data-bind="text: name"></div>
+                    </div>
+                    <div class="column primary rightColumn">
+                        <div class="columnTitle">Saldo</div>
+                        <div class="columnContent number currency" data-bind="formatNumber: balance, currency: $parent.currency"></div>
+                    </div>
+                </label>
+
+                <div class="addAccountActionsSection" data-bind="visible: selected() && accountIsNew && $parent.mergeCandidates().length > 0">
+                    <div class="addAccountActionHeader">
+                        <h5>Hvordan skal kontoen tilføjes?</h5>
+                        <p>Hvis kontoen er allerede er i Spiir kan du vælge 'Flet med eksisterende konto' for at undgå dobbelte konti.</p>
+                    </div>
+
+                    <div class="addAccountActionGroup">
+                        <label>
+                            <input type="radio" value="false" data-bind="checked: mergeWithExisting, attr: { name: 'merge-option-' + $index() }, event: { change: $parent.onAccountMergeOptionChanged }">
+                            Tilføj som ny konto
+                        </label>
+
+                        <label>
+                            <input type="radio" value="true" data-bind="checked: mergeWithExisting, attr: { name: 'merge-option-' + $index() }, event: { change: $parent.onAccountMergeOptionChanged }">
+                            Flet med eksisterende konto
+                        </label>
+                    </div>
+
+                    <div class="addAccountActionSelect" data-bind="visible: mergeWithExisting() === 'true'">
+                        <label>
+                            Vælg konto: <br />
+
+                            <select data-bind="
+                                options: $parent.mergeCandidates,
+                                optionsText: function(item) {
+                                    return item.name + ' (' + Math.round(item.balance, 0) + ' kr)'
+                                },
+                                value: existingAccountToMerge,
+                                optionsCaption: 'Vælg konto...',
+                                event: { change: $parent.onMergeCandidateChanged },
+                                optionsAfterRender: $parent.setOptionAsDisabled,
+                                valueAllowUnset: true">
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="topActions mtl">
+            <button type="button" class="btn btn-primary" data-bind="click: next, disable: shouldDisableContinue()">
+                <i class="iconLock"></i>
+                Hent konti
+            </button>
+        </p>
+    </div>
+</div>

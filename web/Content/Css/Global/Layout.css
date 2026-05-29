@@ -1,0 +1,175 @@
+html {
+  height: 100%;
+}
+
+.appLayout .page {
+  position: relative;
+}
+
+body {
+  min-height: 100%;
+  overflow-y: scroll;
+}
+
+.appLayout .page {
+  background: #fff;
+  max-width: 1440px;
+  min-height: 100%;
+  min-width: 1000px;
+}
+
+.appLayout {
+  font-style: normal;
+  font-weight: 300;
+}
+
+@media(min-width:1441px) {
+  .appLayout body {
+    background: url(Layout/wood.jpg?v=JFouoIk7bgAid56zpypUDg7lf2Q) repeat-y 1440px -840px;
+  }
+}
+
+.appLayout .content {
+  min-height: 100%;
+  overflow: hidden;
+  padding-top: 35px;
+}
+
+.appLayout .twoColumnContent {
+  background: url(Layout/sidebarBg270.png?v=JFouoIk7bgAid56zpypUDg7lf2Q) repeat-y right top;
+}
+
+.appLayout .twoColumnContent .mainWrapper {
+  float: left;
+  width: 100%;
+}
+
+.appLayout .twoColumnContent .main {
+  margin-right: 270px;
+}
+
+.appLayout aside {
+  background: #f2f5f6;
+  float: left;
+  margin-left: -270px;
+  width: 270px;
+}
+
+.appLayout aside .separatorTop {
+  border-top: 1px solid #cfd8dc;
+}
+
+.appLayout aside .separatorBottom {
+  border-bottom: 1px solid #cfd8dc;
+}
+
+.appLayout .main {
+  margin-left: 90px;
+  padding: 15px;
+}
+
+.appLayout .contentSidePadding {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.appLayout aside section {
+  padding: 15px;
+}
+
+.appLayout .topPanel .content {
+  padding-top: 0;
+}
+
+.appLayout .topPanel .main {
+  margin-left: 0;
+}
+
+.appLayout .topPanel .twoColumnContent {
+  background: none;
+}
+
+.appLayout .topPanel aside {
+  height: 100%;
+  background: #0fb761;
+}
+
+@media(min-width:1250px) {
+  .appLayout aside {
+    margin-left: -290px;
+    width: 290px;
+  }
+
+  .appLayout .twoColumnContent {
+    background: url(Layout/sidebarBg290.png?v=JFouoIk7bgAid56zpypUDg7lf2Q) repeat-y right top;
+  }
+
+  .appLayout .twoColumnContent .main {
+    margin-right: 290px;
+  }
+
+  .appLayout .main,.appLayout aside section {
+    padding: 25px;
+  }
+
+  .appLayout .contentSidePadding {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+.appLayout header h1,.appLayout header p {
+  margin-top: 4px;
+}
+
+.appLayout .headerActions {
+  float: right;
+}
+
+.appLayout .pageLoader {
+  background: url(../Components/Shared/white60.png?v=JFouoIk7bgAid56zpypUDg7lf2Q);
+  background: rgba(255,255,255,.6);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+}
+
+.appLayout .pageLoader .loadingSpinner {
+  background: url(../Components/Shared/loader.gif?v=JFouoIk7bgAid56zpypUDg7lf2Q) no-repeat 50% 300px;
+  height: 100%;
+  width: 100%;
+}
+
+.appLayout .profilePage {
+  width: 760px;
+  margin: 0 auto;
+}
+
+.clearfix:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+
+.clearfix {
+  display: inline-block;
+}
+
+* html .clearfix {
+  height: 1%;
+}
+
+.clearfix {
+  display: block;
+}
+
+@media print {
+  .topPanel,.hideInPrint {
+    display: none;
+  }
+}

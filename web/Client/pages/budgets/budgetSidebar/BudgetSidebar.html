@@ -1,0 +1,46 @@
+﻿<div class="sidebar budgetSidebar">
+    <section>
+        <h2>Mit budget <span data-bind="text: year"></span></h2>
+
+        <div data-bind="component: budgetBarometer"></div>
+
+        <p class="sidebarKeyNumber labelledNumber">
+            <span class="title">Slutsaldo <span data-bind="text: year"></span> <span data-bind="visible: isProjected">(prognose)</span></span>
+            <br/>
+            <span class="number currency" data-bind="formatNumber: realized, currency: currency"></span>
+            <br/>
+            <small>Budget <span data-bind="formatNumber: yearBudget"></span></small>
+        </p>
+
+        <div class="extraordinaryResult" data-bind="visible: showExtraordinaryResult, tooltipBase: extraordinaryTooltip">
+            <p class="labelledNumber smallLabelledNumber">
+                <span class="title">Slutsaldo m. ekstraordinære</span>
+                <br/>
+                <span class="number currency" data-bind="formatNumber: realizedWithExtraordinary, currency: currency"></span>
+            </p>
+        </div>
+    </section>
+
+    <section class="separatorTop">
+        <h4>Budget gns/måned</h4>
+        <div class="tableFrame">
+            <table>
+                <tr>
+                    <td>Indkomst</td><td class="amount"><span class="number currency" data-bind="formatNumber: averageIncome, currency: currency"></span></td>
+                </tr>
+                <tr class="beforeHighlight">
+                    <td>Regninger</td><td class="amount"><span class="number currency" data-bind="formatNumber: averageBill, currency: currency"></span></td>
+                </tr>
+                <tr class="highlight">
+                    <td>Rådighedsbeløb</td><td class="amount"><span class="number currency" data-bind="formatNumber: disposableAmount, currency: currency"></span></td>
+                </tr>
+                <tr class="afterHighlight">
+                    <td>Forbrug</td><td class="amount"><span class="number currency" data-bind="formatNumber: averageConsumption, currency: currency"></span></td>
+                </tr>
+                <tr class="result" data-bind="css: { negative: averageResult() < 0 }">
+                    <td>Resultat</td><td class="amount"><span class="number currency" data-bind="formatNumber: averageResult, currency: currency"></span></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+</div>

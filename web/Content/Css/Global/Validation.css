@@ -1,0 +1,52 @@
+label.error,.field-validation-error {
+  color: #f00;
+}
+
+.field-validation-valid {
+  display: none;
+}
+
+input[type=text].error,input[type=password].error,textarea.error,.input-validation-error {
+  border: 1px solid #f00;
+  background-color: #fee;
+}
+
+.validation-summary-errors ul {
+  padding: 0;
+  margin: 0;
+}
+
+.validation-summary-errors li {
+  border: 1px solid #a7a7a7;
+  background: #d42116;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.validation-summary-valid {
+  display: none;
+}
+
+.editor-label {
+  margin-top: 5px;
+}
+
+label.error,.validationMessage {
+  color: #f00;
+  padding: 0 2px;
+}
+
+.validationMessage {
+  display: block;
+}
+
+.comboboxWrapper.error {
+  border-color: #f00;
+}
+
+.comboboxWrapper.error input {
+  background-color: #fee;
+}

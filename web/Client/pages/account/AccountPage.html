@@ -1,0 +1,56 @@
+﻿<div data-bind="visible: hasAccounts() === true" class="content twoColumnContent accountPage">
+    <div class="mainWrapper">
+        <div class="main">
+            <header>
+                <p class="headerActions">
+                    <button class="btn" data-bind="click: addNewBank, enable: bankSyncEnabled">Tilføj bankkonto</button>
+                </p>
+                <h1 class="accountsPageTitle">
+                    Mine konti
+
+                    <span class="accountFilter btn-group" data-bind="visible: hasInActiveAccounts">
+                        <a href="#" class="btn btn-mini" data-bind="click: changeFilter.bind($data, 'active'), css: { active: accountFilter() === 'active'}">Vis åbne</a> |
+                        <a href="#" class="btn btn-mini" data-bind="click: changeFilter.bind($data, 'inactive'), css: { active: accountFilter() === 'inactive'}">Vis lukkede</a>
+                    </span>
+                </h1>
+            </header>
+
+            <ul class="notifications" data-bind="if: bankSyncDisabledReason">
+                <li class="error">
+                    <span class="icon"></span>
+                    <p data-bind="text: bankSyncDisabledReason"></p>
+                </li>
+            </ul>
+
+            <div data-bind="component: accountList"></div>
+
+            <div class="pageLoader" data-bind="animated: { effect: 'fade', visible: processing, speed: 'fast' }">
+                <div class="loadingSpinner"></div>
+            </div>
+        </div>
+    </div>
+    <aside class="sidebar accountSidebar" data-bind="component: accountSidebar"></aside>
+</div>
+
+<div data-bind="visible: hasAccounts() === false" class="content" style="display: none">
+    <div class="main">
+        <ul class="notifications" data-bind="if: bankSyncDisabledReason">
+            <li class="error">
+                <span class="icon"></span>
+                <p data-bind="text: bankSyncDisabledReason"></p>
+            </li>
+        </ul>
+
+        <div class="pageIntroduction overviewPageIntroduction">
+            <div class="center">
+                <h1 class="mbn">Du kan nemt se, hvad du bruger penge på</h1>
+                <p class="mtn">
+                    Spiir tager sig af alt det kedelige arbejde. Poster fra din netbank indeles i kategorier, og Spiir giver dig et simpelt og visuelt overblik over, hvad du bruger pengene på. Hos Spiir er der ingen konvolutter, du skal gemme penge og kvitteringer i. Det hører fortiden til. Med Spiir får du det hele foræret. 
+                </p>
+                <p class="action">
+                    <button class="btn btn-large btn-primary" data-bind="click: addNewBank, enable: bankSyncEnabled">Tilføj din bank</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+RewriteEngine On
+
+RewriteRule ^udgifter$ /index.php [L]
+RewriteRule ^udgifter/ /index.php [L]
+RewriteRule ^indkomst$ /index.php [L]
+RewriteRule ^indkomst/ /index.php [L]
+RewriteRule ^opsparing$ /index.php [L]
+RewriteRule ^poster$ /postings.php [L]
+RewriteRule ^poster/ /postings.php [L]
+RewriteRule ^Template/TemplateSet/Postings /templates.php [L]
+RewriteRule ^config\.\d+\.js$ /config.js [L]

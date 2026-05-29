@@ -1,0 +1,72 @@
+<div class="introTooltip accountPagePopover" data-bind="disableFields: processing">
+    <div class="arrow"></div>
+    <a href="#" class="close" data-bind="visible: !processing(), click: close"></a>
+
+    <h3>
+        <span data-bind="formatDate: { date: startDate, format: '%e. %b %Y' }" />
+        til 
+        <span data-bind="formatDate: { date: endDate, format: '%e. %b %Y' }" />
+    </h3>
+    
+    <p data-bind="visible: ignoredPostingCount === 0">
+        Perioden har <span data-bind="formatNumber: postingCount"></span>
+        poster.        
+    </p>
+    
+    <p data-bind="visible: ignoredPostingCount > 0">
+        Perioden har <span data-bind="formatNumber: postingCount"></span>
+        synlige poster og <span data-bind="formatNumber: ignoredPostingCount"></span> skjulte.
+        <span data-bind="visible: ignorePostingsBefore">
+            Poster fra før
+            <span data-bind="formatDate: { date: ignorePostingsBefore, format: '%e. %b %Y' }" />
+            er skjulte.
+        </span>
+
+        <span data-bind="visible: ignorePostingsAfter">
+            Poster fra efter
+            <span data-bind="formatDate: { date: ignorePostingsAfter, format: '%e. %b %Y' }" />
+            er skjulte.
+        </span>
+    </p>
+
+    <div class="periodPostings" data-bind="css: { centeredSpinner: loadingPostings }">
+        <ul>
+            <li class="date">Dato</li>
+            <li class="description">Tekst</li>
+            <li class="amount">Beløb</li>
+            <li class="amount">Saldo</li>
+        </ul>
+        <!--ko foreach: postings-->
+        <ul>
+            <li class="date" data-bind="formatDate: { date: date, format: '%d-%m-%y' }"></li>
+            <li class="description" data-bind="text: description"></li>
+            <li class="amount" data-bind="formatNumber: amount"></li>
+            <li class="amount" data-bind="formatNumber: balance"></li>
+        </ul>
+        <!--/ko-->
+    </div>
+
+
+    <p>
+        <button class="btn" data-bind="click: showMoveForm, disable: moveFormVisible, visible: (canMove() || canMoveToNewAccount()) && !moveFormVisible()">Flyt...</button>
+        <button class="btn mls" data-bind="visible: canDelete() && !moveFormVisible(), click: deleteAccount">Slet...</button>
+        <span data-bind="visible: !canMove() && !canMoveToNewAccount()">Kontoen kan ikke flyttes, da der er fuldt overlap med andre konti, og flyt vil svare til at slette en konto.</span>
+    </p>
+
+    <div data-bind="visible: moveFormVisible" class="mtl">
+        <p data-bind="visible: canMove">
+            Vil du flytte perioden til en anden konto?
+            <br />
+            <select data-bind="options: otherAccountGroups, value: selectedAccountGroup, optionsCaption: 'Vælg konto', optionsText: 'name'"></select>
+            <button class="btn" data-bind="click: moveToAnotherAccount">Flyt</button>
+        </p>
+
+        <p data-bind="visible: canMoveToNewAccount">
+            Vil du flytte perioden til en ny konto?
+            <br />
+            <input type="text" data-bind="value: newAccountGroupName" placeholder="Navn" />
+            <button class="btn" data-bind="click: moveAccountToNewAccountGroup">Flyt</button>
+        </p>
+    </div>
+
+</div>

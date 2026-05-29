@@ -1,0 +1,30 @@
+﻿<div class="modal wizardModal smallWizardModal consentModal">
+    <h3 data-bind="text: consent().title"></h3>
+    <div class="consent-introduction" data-bind="html: consent().content"></div>
+
+    <div class="consent" data-bind="foreach: consent().consentItems">
+        <h4 class="consent-title" data-bind="text: title"></h4>
+
+        <div class="consent-section" data-bind="foreach: sections">
+            <dl class="consent-section-content">
+                <dt>
+                    <span data-bind="text: title"></span>
+                    <span data-bind="visible: value">(<!--ko text: value--><!--/ko-->)</span>
+                </dt>
+                <dd data-bind="text: content"></dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="consent-terms">
+        <div data-bind="html: consent().terms"></div>
+        <div><a href="https://www.spiir.dk/betingelser/persondatapolitik" target="_blank" rel="noopener">Læs vores persondatapolitik</a></div>
+    </div>
+
+    <div class="actions">
+        <p class="right" data-bind="css: { waitingActions: processing }">
+            <button type="button" class="btn" data-bind="click: reject, disable: processing">Afvis</button>
+            <button type="button" class="btn btn-primary" data-bind="click: accept, disable: processing">Godkend</button>
+        </p>
+    </div>
+</div>

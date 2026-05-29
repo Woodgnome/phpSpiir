@@ -1,0 +1,73 @@
+﻿<li data-bind="css: id + ' ' + (bankCredentials().length > 1 ? 'hasMultipleLoginIds' : '')">
+    <h4 class="name" data-bind="text: name"></h4>
+
+    <!--ko if: bankApiDisabledMesssage-->
+    <div class="leftRight">
+        <!--ko if: isAutomatic -->
+        <!--ko foreach: bankCredentials -->
+        <div class="btn-group right">
+            <button class="btn btn-mini btn-primary updateButton" disabled>
+                Opdater <span class="loginId">(<span data-bind="text: $data.displayName"></span>)</span>
+            </button>
+
+            <button class="btn btn-mini btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+            <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
+                <li><a tabindex="-1" href="#" data-bind="click: $parent.removeSavedCredentials.bind($parent)">Log ud af banken</a></li>
+            </ul>
+        </div>
+        <!--/ko-->
+        <!--/ko-->
+        <ul class="notifications left">
+            <li class="error">
+                <div class="icon"></div>
+                <p data-bind="text: bankApiDisabledMesssage"></p>
+            </li>
+        </ul>
+    </div>
+    <!--/ko-->
+
+    <div class="leftRight">
+        <ul class="right buttons">
+            <!--ko if: mobileBankApiEnabled && isAutomatic -->
+            <!--ko foreach: bankCredentials -->
+            <li>
+                <div class="btn-group">
+                    <!--ko if: $data.isDisabled -->
+                    <button class="btn btn-mini btn-primary updateButton" data-bind="disable: $parent.disableSyncButtons, click: $parent.updateAutomaticBank.bind($parent)">
+                        Log på <span class="loginId">(<span data-bind="text: $data.displayName"></span>)</span>
+                    </button>
+                    <!--/ko-->
+                    <!--ko if: !$parent.hasOnlyInActiveAccounts && !$data.isDisabled -->
+                    <button class="btn btn-mini btn-primary updateButton" data-bind="disable: $parent.disableSyncButtons, click: $parent.updateAutomaticBank.bind($parent)">
+                        Opdater <span class="loginId">(<span data-bind="text: $data.displayName"></span>)</span>
+                    </button>
+                    <!--/ko-->
+                    <!--ko if: $parent.hasOnlyInActiveAccounts && !$data.isDisabled -->
+                    <button class="btn btn-mini btn-primary addAccountButton" data-bind="disable: $parent.disableSyncButtons, click: $parent.addAccounts.bind($parent)">
+                        Tilføj konti
+                    </button>
+                    <!--/ko-->
+                    <button class="btn btn-mini btn-primary dropdown-toggle" data-toggle="dropdown" data-bind="disable: $parent.disableSyncButtons"><span class="caret"></span></button>
+                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
+                        <li><a tabindex="-1" href="#" data-bind="click: $parent.updateAutomaticBank.bind($parent)">Opdater</a></li>
+                        <li><a tabindex="-1" href="#" data-bind="click: $parent.addAccounts.bind($parent)">Tilføj konti</a></li>
+                        <li class="divider"></li>
+                        <li><a tabindex="-1" href="#" data-bind="click: $parent.removeSavedCredentials.bind($parent)">Log ud af banken</a></li>
+                    </ul>
+                </div>
+            </li>
+            <!--/ko-->
+            <!--/ko-->
+            <!--ko if: mobileBankApiEnabled && isAutomatic && bankCredentials().length === 0 -->
+            <li>
+                <button class="btn btn-mini btn-primary updateButton" data-bind="disable: disableSyncButtons, click: loginToAutomaticBank">Log på</button>
+            </li>
+            <!--/ko-->
+            <!--ko if: (hasManualAccounts || !mobileBankApiEnabled) && !hasOnlyPartnerAccounts && !disableManualUpload -->
+            <li>
+                <button class="btn btn-mini btn-primary updateButton" data-bind="disable: processing, click: updateManualBank">Indlæs</button>
+            </li>
+            <!--/ko-->
+        </ul>
+    </div>
+</li>

@@ -1,0 +1,22 @@
+﻿<!-- ko foreach: mainCategories -->
+<div class="budgetList">
+    <div class="mainCategory" data-bind="component: $data">        
+    </div>
+    <div class="fixedBudgetGroups" data-bind="animated: { visible: isExpanded }, component: subRows">  
+    </div>
+</div>
+<!-- /ko -->
+
+<!-- ko with: rest -->
+<!-- ko if: fixedBudgetGroups.length > 0 -->
+<div class="budgetList" data-bind="css: { expanded: showFixedBudgetGroups }">
+    <div class="row restTitleRow" data-bind="click: toggleFixedBudgetGroups">
+        <div class="name">
+            <h4>Du har poster i <span data-bind="text: fixedBudgetGroups.length === 1 ? '1 kategori' : fixedBudgetGroups.length + ' kategorier'"></span> uden for budget</h4>
+        </div>
+    </div>
+    <div class="fixedBudgetGroups" data-bind="animated: { visible: showFixedBudgetGroups }, component: fixedBudgetGroups">  
+    </div>
+</div>
+<!-- /ko -->
+<!-- /ko -->

@@ -1,0 +1,10 @@
+﻿<div class="mobileBankLoginStep modernBankLoginStep" data-bind="visible: visible">
+    <ul class="notifications" data-bind="visible: errorMessage">
+        <li class="error">
+            <div class="icon"></div>
+            <p data-bind="html: errorMessage"></p>
+        </li>
+    </ul>
+
+    <div class="formSpinner" data-bind="visible: loading()"><span class="spinner"></span></div>
+</div>

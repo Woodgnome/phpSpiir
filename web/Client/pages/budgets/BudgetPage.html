@@ -1,0 +1,45 @@
+﻿<div class="budgetPage content twoColumnContent" data-bind="visible: hasBudgets()"  style="display: none">
+    <div class="mainWrapper">
+        <div class="main">
+            <header>
+                <div class="headerActions">
+                    <div class="btn-group media">
+                        <button class="btn dropdown-toggle" data-toggle="dropdown">
+                            Funktioner
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li data-bind="visible: state.budgetType() !== 'result'"><a tabindex="-1" href="#" data-bind="click: newBudget">Ny budgetpost</a></li>
+                            <li><a tabindex="-1" href="#" data-bind="click: exportBudget">Udskriv/eksporter</a></li>
+                            <li><a tabindex="-1" href="#" data-bind="click: showDeleteAllBudgetsModal">Slet budgetter...</a></li>
+                        </ul>
+                    </div>
+                </div>               
+                <h1><span data-bind="text: title"></span> i <span data-bind="component: yearPicker"></span></h1>
+            </header>
+
+            <div data-bind="component: budgetList"></div>
+        
+            <div class="pageLoader" data-bind="animated: {effect: 'fade', visible: loading, speed: 'fast'}"><div class="loadingSpinner"></div></div>
+        </div>
+    </div>
+
+    <aside  data-bind="visible: hasBudgets() === true, component: budgetSidebar"  style="display: none">
+    </aside>
+</div>
+
+<div data-bind="visible: hasBudgets() === false" class="budgetPage content" style="display: none">
+    <div class="main">
+        <div class="pageIntroduction budgetPageIntroduction">
+            <div class="center">
+                <h1 class="mbn">Intelligent budget med dig i centrum</h1>
+                <p class="mtn">
+                    Spiirs budget tager udgangspunkt i din privatøkonomi. Med detaljeret viden om dine udgifter skaber vi et retvisende budget. Helt automatisk. Med Spiirs budget er du altid ajour og du kan nemt se, hvad der gik over eller under. Sig farvel til besværlige budgetskemaer, der ender med at samle støv i skuffen. 
+                </p>
+                <p class="action">
+                    <button type="button" class="btn btn-large btn-primary" data-bind="click: showStartModal">Kom i gang med budgetter</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

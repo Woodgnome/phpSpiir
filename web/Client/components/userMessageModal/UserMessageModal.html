@@ -1,0 +1,14 @@
+﻿<div class="modal wizardModal userMessageModal">
+    <div data-bind="foreach: userMessages">
+        <div class="userMessage">
+            <div data-bind="html: message"></div>
+            <p class="created" data-bind="formatDate: created"></p>
+        </div>
+    </div>
+    
+    <div class="actions">
+        <p class="right">
+            <button type="button" class="btn btn-primary" data-bind="click: close">Luk</button>
+        </p>
+    </div>
+</div>

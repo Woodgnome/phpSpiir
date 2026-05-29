@@ -1,0 +1,42 @@
+﻿<div class="fileView">
+    <div class="bar" data-bind="click: click, css: { clickable: clickable }">
+        <div class="column leftColumn">
+            <div class="icon" data-bind="css: iconClass">
+                <div class="exclamation" data-bind="visible: highlight"></div>
+            </div>
+        </div>
+        <div class="column primary fixedWidthNarrow" data-bind="visible: state() === 'success'">
+            <div class="columnTitle" data-bind="visible: accountIsNew()">Ny konto</div>
+            <div class="columnTitle" data-bind="visible: !accountIsNew()">Konto</div>
+            <div class="columnContent" data-bind="text: accountName, visible: !accountIsNew()"></div>
+            <input type="text" data-bind="value: accountName, visible: accountIsNew">
+        </div>
+        <div class="column primary fixedWidthNarrow" data-bind="visible: state() !== 'success'">
+            <div class="columnContent noTitle" data-bind="text: statusMessage"></div>
+        </div>
+        <div class="column fixedWidthWide" data-bind="visible: state() !== 'success'">
+            <div class="columnTitle">Filnavn</div>
+            <div class="columnContent" data-bind="text: fileName"></div>
+        </div>        
+        <div class="column fixedWidthWide" data-bind="visible: state() == 'success'">
+            <div class="columnTitle">Resultat</div>
+            <div class="columnContent" data-bind="text: uploadResultMessage"></div>
+        </div>        
+    </div>
+    <div class="drawer" data-bind="animated: { visible: drawerVisible, speed: 'fast' }">
+        <div data-bind="visible: state() === 'failed'">
+            <p data-bind="text: errorMessage"></p>
+        </div>
+        <div data-bind="component: configuration"></div>
+        <p data-bind="visible: showOverlapInfo" class="uploadInfo mtn">
+            Spiir kunne ikke finde kontoen. Hvis du mener, at kontoen allerede er i Spiir, så skal du lave overlap. 
+            <span class="helpIcon" data-bind="tooltip: 'Hvis kontoen findes, så skal du sørge for at sætte dato-filteret i netbanken, så det går fx et år tilbage. På den måde skaber du overlap med de poster som allerede er i Spiir. Spiir bruger overlappet til at finde den rigtige konto - og bare rolig Spiir holder selv styr på poster, så du ikke får dubletter. Hvis du ikke har mulighed for at lave overlap, så kan du manuelt flette kontiene sammen ved at klikke \'Flet konti\' på kontosiden.'"></span>
+        </p>
+        <p data-bind="visible: accountsMerged" class="uploadInfo">
+            Indlæsningen overlappede med eksisterende konti, som nu er slået sammen til én konto. Godt gået!
+        </p>
+        <p data-bind="visible: incorrectOverlapsFixed" class="uploadInfo">
+            Filen du indlæste viser at kontoen, som du tidligere har flettet sammen med en anden, skal deles op igen. Der er oprettet en ny konto, som du bør gennemgå for dubletter.
+        </p>
+    </div>    
+</div>

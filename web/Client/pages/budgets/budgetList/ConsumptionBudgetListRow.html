@@ -1,0 +1,55 @@
+﻿<div class="row consumptionRow" data-bind="click: click, css: { consumptionLimitRow: isLimit, frame: isLimit, rollover: isRollover, expanded: isExpanded, restTitleRow: isConsumptionRest && restSubcategories.length > 0, nonClickableRestRow: isConsumptionRest && restSubcategories.length === 0 }">
+    <div class="leftColumn">
+        <div class="leftFrame">
+            <div class="name">
+                <h4 data-bind="text: name"></h4>
+            </div>
+            <div class="amount">
+                <p>
+                    <span class="number currency" data-bind="formatNumber: remaining, currency: currency"></span>
+                    <br />
+                    <small>tilbage</small>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="rightColumn">
+        <ul class="months">
+            <!-- ko foreach: lastMonths -->
+            <li data-bind="attr: { 'class': status + (warning ? ' warning' : '') }">
+                <span class="monthName" data-bind="visible: status, text: shortMonthName"></span>
+                <div class="budgetTooltipTrigger bulletFrame">
+                    <div class="bullet"></div>
+                </div>
+            </li>
+            <!-- /ko -->
+            <!-- ko with: currentMonth -->
+            <li data-bind="attr: { 'class': 'currentMonth ' + status + (warning ? ' warning' : '') }">
+                <span class="title" data-bind="html: title"></span>
+                <div class="budgetTooltipTrigger barFrame">
+                    <div class="innerFrame">
+                        <div class="bar" data-bind="css: { sharpEdgeBar: barWidth < 1 }, style: { width: Math.round(100*barWidth) + '%' }"></div>
+                        <div class="runner" data-bind="visible: $parent.isRollover"></div>
+                        <div class="today" data-bind=" style: { left: Math.round(100*todayLocation) + '%' }">
+                            <div class="todayText" data-bind="text: todayText, visible:showToday"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!-- /ko -->
+        </ul>
+    </div>
+</div>
+<div class="budgetList restBudgetList" data-bind="animated: { visible: isExpanded }">
+    <div data-bind="animated: { visible: isExpanded }, foreach: restSubcategories">
+        <div class="restRow leftRight" data-bind="click: $parent.restClick, css: { clickableRestRow: categoryId !== '-1' }">
+            <div class="left">
+                <span data-bind="text: mainCategoryName + ':', visible: mainCategoryName"></span>
+                <strong data-bind="text: subCategoryName"></strong>
+            </div>
+            <div class="right">
+                <span class="amount number currency" data-bind="formatNumber: amount, currency: $parent.currency"></span>
+            </div>
+        </div>
+    </div>
+</div>
