@@ -1,3 +1,4 @@
 .env
+archive/
 web/test/.env
 vendor/
