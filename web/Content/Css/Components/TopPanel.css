@@ -1,0 +1,340 @@
+.topPanel {
+  color: #fff;
+  font-size: 12px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 11;
+}
+
+.topPanel .menuWrapper {
+  margin-left: 90px;
+  position: relative;
+  max-width: 1350px;
+  min-width: 927px;
+}
+
+.topPanel .menu {
+  position: absolute;
+  background: #09ab58;
+  bottom: -45px;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.appLayout .topPanel .topBar {
+  position: absolute;
+  width: 100%;
+  height: 45px;
+  top: 100%;
+  margin-top: -45px;
+  left: 0;
+  overflow: hidden;
+  min-height: 0;
+  background-color: #09ab58;
+}
+
+.topPanel .topBar .main {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.topPanel .topBar {
+  -webkit-transition: opacity .3s ease-in;
+  -moz-transition: opacity .3s ease-in;
+  -o-transition: opacity .3s ease-in;
+  transition: opacity .3s ease-in;
+}
+
+.topPanel .expanded .topBar {
+  opacity: 0;
+}
+
+.topPanel .topBar ul {
+  height: 25px;
+  margin: 0;
+  padding: 15px 10px 5px;
+}
+
+.topPanel .handle {
+  height: 75px;
+  width: 200px;
+  background: url(TopPanel/handle.png?v=JFouoIk7bgAid56zpypUDg7lf2Q) no-repeat center center;
+  position: absolute;
+  left: 50%;
+  margin-left: -100px;
+  bottom: -15px;
+  cursor: pointer;
+}
+
+.topPanel .topBar li {
+  float: left;
+}
+
+.topPanel a {
+  color: #fff;
+}
+
+.topPanel .topBar a {
+  padding: 5px;
+}
+
+.topPanel .subNavigation {
+  float: left;
+  text-transform: uppercase;
+}
+
+.topPanel .topBar .subNavigation li {
+  margin-right: 10px;
+}
+
+.topPanel .subNavigation .selected {
+  font-weight: bold;
+}
+
+.topPanel .userPanel {
+  background: #0fb761;
+  height: 25px;
+  padding: 15px 20px 5px;
+  position: relative;
+}
+
+.topPanel .topBar .userPanel {
+  cursor: pointer;
+}
+
+.topPanel .userPanel .userName {
+  font-weight: bold;
+}
+
+.topPanel .userPanel .notificationCount {
+  background: url(TopPanel/notificationCount.png?v=JFouoIk7bgAid56zpypUDg7lf2Q) no-repeat right center;
+  width: 18px;
+  margin-right: 2px;
+  font-weight: bold;
+  height: 15px;
+  text-align: center;
+  font-size: 10px;
+  display: inline-block;
+  vertical-align: 1px;
+}
+
+.topPanel .userPanel .expandArrow {
+  background: url(TopPanel/expandArrow.png?v=JFouoIk7bgAid56zpypUDg7lf2Q) no-repeat left center;
+  display: inline-block;
+  height: 15px;
+  padding-left: 3px;
+  vertical-align: -3px;
+  width: 10px;
+}
+
+.topPanel aside section {
+  border-top: 1px solid #fff;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.topPanel aside section:first-child {
+  border-bottom: 0;
+}
+
+.topPanel aside .userSection {
+  border-top: 0;
+  padding-top: 5px;
+  background: #0fb761;
+}
+
+.topPanel aside h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 5px 0;
+  text-transform: uppercase;
+}
+
+.topPanel aside p {
+  margin: 0 0 10px 0;
+}
+
+.topPanel .barWithLabel {
+  margin: 5px 0;
+  padding: 1px 35px 1px 0;
+  position: relative;
+}
+
+.topPanel .barWithLabel .label {
+  font-weight: bold;
+  position: absolute;
+  right: 0;
+  top: 0;
+  text-align: right;
+  width: 35px;
+}
+
+.topPanel .barFrame {
+  padding: 2px;
+  border: 1px solid #eff6e2;
+  position: relative;
+}
+
+.topPanel .bar {
+  background: #eff6e2;
+  height: 6px;
+}
+
+.topPanel aside .actions {
+  font-weight: bold;
+  text-decoration: underline;
+  position: relative;
+  height: 22px;
+  margin-bottom: 0;
+}
+
+.topPanel aside .actions .btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70px;
+  border-color: #fff;
+}
+
+.topPanel aside .barWithLabel+.actions {
+  margin: 10px 0 5px 0;
+}
+
+.topPanel aside .highlight {
+  border-radius: 3px;
+  padding: 5px;
+  padding-left: 26px;
+  background: #09ab58 url(TopPanel/exclamation.png?v=JFouoIk7bgAid56zpypUDg7lf2Q) no-repeat 4px 4px;
+  line-height: 1.3;
+  font-weight: bold;
+}
+
+.topPanel footer {
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+}
+
+.topPanel .shareIcons {
+  overflow: hidden;
+}
+
+.topPanel .shareIcons li {
+  float: left;
+  margin-right: 10px;
+}
+
+.topPanel .shareIcons a {
+  display: block;
+  width: 42px;
+  height: 42px;
+  background-image: url(TopPanel/shareIcons.png?v=JFouoIk7bgAid56zpypUDg7lf2Q);
+  background-repeat: no-repeat;
+}
+
+.topPanel .shareIcons .facebook {
+  background-position: 0 0;
+}
+
+.topPanel .shareIcons .twitter {
+  background-position: 0 -50px;
+}
+
+.topPanel .shareIcons .mail {
+  background-position: 0 -100px;
+}
+
+.topPanel .shareTrustPilot {
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.topPanel .shareTrustPilot a {
+  text-decoration: underline;
+}
+
+.topPanel .supportLinks {
+  margin: 20px 0;
+}
+
+.topPanel .supportLinks a {
+  height: 21px;
+  display: inline-block;
+  background-image: url(TopPanel/supportIcons.png?v=JFouoIk7bgAid56zpypUDg7lf2Q);
+  background-repeat: no-repeat;
+  line-height: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 27px;
+}
+
+.topPanel .supportLinks p {
+  margin-bottom: 15px;
+}
+
+.topPanel .supportLinks .helpDesk {
+  background-position: 0 0;
+}
+
+.topPanel .supportLinks .ideaForum {
+  background-position: 0 -25px;
+}
+
+.topPanel .supportLinks .contact {
+  background-position: 0 -50px;
+}
+
+.topPanel .supportLinks .joyRide {
+  background-position: 0 -75px;
+}
+
+.topPanel .close {
+  display: block;
+  position: absolute;
+  top: 9px;
+  right: 20px;
+  width: 21px;
+  height: 21px;
+  background: url(TopPanel/closeIcon.png?v=JFouoIk7bgAid56zpypUDg7lf2Q);
+}
+
+.topPanel .videos {
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.topPanel .videos li {
+  float: left;
+  position: relative;
+  border: 3px solid #0fb761;
+}
+
+.topPanel .videos img {
+  display: block;
+  width: 250px;
+  height: 141px;
+}
+
+.topPanel .videos a {
+  background: #000 url(TopPanel/playVideo.png?v=JFouoIk7bgAid56zpypUDg7lf2Q) no-repeat center 43px;
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 51px;
+  -moz-transition: background .1s ease-out;
+  -o-transition: background .1s ease-out;
+  -webkit-transition: background .1s ease-out;
+  transition: background .1s ease-out;
+  text-align: center;
+  font-size: 16px;
+  padding-top: 90px;
+}
+
+.topPanel .videos a:hover {
+  background-color: rgba(0,0,0,.4);
+}

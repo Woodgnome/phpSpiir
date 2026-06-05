@@ -1,0 +1,17 @@
+﻿<div class="accountPeriods">
+    <div class="accountLabel">
+        <h4>
+            <a href="#" data-bind="click: showAccountModal, text: name"></a>
+        </h4> 
+    </div>
+    <div class="periodChart">
+        <ul data-bind="foreach: periods">
+            <li>
+                <span title="Automatisk opkoblet" data-bind="visible: isAutomatic" style="margin-left: -10px">*</span>
+                <div class="bar" data-bind="style: { left: left, width: width }, event: { mouseover: $parent.editPeriod }, foreach: ignoredIntervals">
+                    <div class="ignoredPostingsBar" data-bind="style: { width: width, left: left }"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

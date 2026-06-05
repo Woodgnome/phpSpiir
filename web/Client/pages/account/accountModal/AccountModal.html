@@ -1,0 +1,67 @@
+﻿<div class="modal wizardModal accountModal">
+    <h3 data-bind="text: name"></h3>
+
+    <ul data-bind="visible: inActive" class="notifications">
+        <li class="info">
+            <div class="icon"></div>
+            <p data-bind="visible: inActiveBySystem">
+                Spiir har ikke længere adgang til kontoen i din bank &amp; har derfor automatisk lukket den. De eksisterende poster er stadig i dit overblik.
+                <a href="#" data-bind="click: reopenAccountGroup">Genåbn konto</a>
+            </p>
+
+            <p data-bind="visible: !inActiveBySystem">
+                Kontoen er lukket, og nye poster hentes ikke længere. De eksisterende poster er stadig i dit overblik.
+                <a href="#" data-bind="click: reopenAccountGroup">Genåbn konto</a>
+            </p>
+        </li>
+    </ul>
+
+    <div class="form line fieldLine">
+        <p class="field leftField">
+            <label>Navn</label>
+            <input type="text" data-bind="value: name" maxlength="50" />
+        </p>
+        <p class="field leftField">
+            <label>
+                Type
+            </label>
+            <input type="text" class="accountType" data-bind="comboboxValue: accountTypeValue, comboboxSource: accountTypeOptions, comboboxOptions: { showOnClick: true, blurOnSelect: true }, event: { focus: onAccountTypeFocus, blur: onAccountTypeBlur }"/>
+        </p>
+        <p class="field leftField">
+            <label>Bank</label>
+            <span data-bind="visible: !editingBank()">
+                <span class="asInput" data-bind="text: bankName"></span>
+                <a class="btn btn-mini mls" href="#" data-bind="click: editBank, visible: !isAutomatic">Skift</a>
+            </span>
+            <span data-bind="visible: editingBank">
+                <input type="text" data-bind="comboboxValue: bankId, comboboxSource: bankComboboxSource, comboboxOptions: { dropdownEnabled: false }" placeholder="Indtast navn på bank" />
+            </span>
+        </p>
+    </div>
+
+    <div>
+        <ul class="tabs">
+            <li data-bind="css: { selected: tabIndex() === 0 }"><a href="#" data-bind="click: function() { tabIndex(0) }">Saldoudvikling</a></li>
+            <li data-bind="css: { selected: tabIndex() === 1 }"><a href="#" data-bind="click: function() { tabIndex(1) }">Poster</a></li>
+        </ul>
+        <div data-bind="component: currentTab"></div>
+    </div>
+
+    <div class="accountModalDeletionDisclaimer" data-bind="visible: showHubDisclaimer()" lang="en">
+        <h3>Delete account</h3>
+        <p>In order to delete your bank account and transactions from Spiir, you need to head on over to Open Banking Hub. After you disconnect your account, deletion in Spiir will begin shortly after.</p>
+        <a href="#" class="btn btn-primary" data-bind="attr: { href: openBankingHubUrl }" target="_blank" rel="noopener">Go to Open Banking Hub</a>
+    </div>
+
+    <div class="actions">
+       <p class="left">
+            <button type="button" class="btn" data-bind="click: closeAccountGroup, visible: !inActive(), disable: processing()">Luk konto...</button>
+            <button type="button" class="btn btn-danger" data-bind="click: deleteAccountGroup, visible: inActive(), disable: processing() || !canDeleteAccount">Slet konto...</button>
+
+            <button type="button" class="btn" data-bind="click: goToPostings, disable: processing() || originalAccountType !== 'Consumption'">Se poster på poster siden...</button>
+        </p>
+        <p class="right" data-bind="css: { waitingActions: processing }">
+            <button type="button" class="btn btn-primary" data-bind="click: saveAndClose, disable: processing">Gem</button>
+        </p>
+    </div>
+</div>

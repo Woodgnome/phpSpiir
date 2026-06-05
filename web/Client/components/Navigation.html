@@ -1,0 +1,10 @@
+﻿<ul data-bind="foreach: primaryLinks">
+    <li data-bind="css: { selected: className === $parent.current() }">
+        <a href="#" data-bind="attr: { 'class': className }, navigate: urlId">
+            <svg viewBox="0 0 33 33" class="icon">
+                <use data-bind="attr: {'xlink:href': '#icon-' + className }" xlink:href=""></use>
+            </svg>
+            <span data-bind="text: title"></span>
+        </a>
+    </li>
+</ul>

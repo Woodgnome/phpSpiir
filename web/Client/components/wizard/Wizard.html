@@ -1,0 +1,17 @@
+﻿<div data-bind="component: steps"></div>
+
+<div class="centeredSpinner wizardSpinner" data-bind="visible: loadingStep"></div>
+
+<div class="actions" data-bind="visible: showActions">
+    <div class="left" data-bind="component: customLeftActions"></div>
+
+    <p class="right" data-bind="css: { waitingActions: processing }">
+        <span data-bind="component: customActions"></span>
+        <button type="button" class="btn" data-bind="click: previous, enable: previousEnabled, visible: previousVisible">Tilbage</button>
+        <button type="button" class="btn btn-primary" data-bind="tooltip: nextTooltip, tooltipOptions: { location: 'right' }, click: next, enable: nextEnabled, text: nextLabel"></button>
+    </p>
+</div>
+
+<div class="pager" data-bind="foreach: steps, visible: showPager">
+    <span data-bind="css: { selected: visible }"></span>
+</div>

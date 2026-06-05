@@ -1,0 +1,89 @@
+﻿<div class="menuWrapper">
+    <div class="menu">
+        <div class="content twoColumnContent">
+            <div class="mainWrapper">
+                <div class="main">
+                    <div class="line">
+                        <div class="unit size2of3 jr-topPanelSupport">
+                            <h3>Hjælp og support</h3>
+
+                            <div class="supportLinks">
+                                <p>
+                                    <a class="helpDesk" data-bind="attr: { href: appInfo.helpUrl }" target="_blank" rel="noopener">Hjælpesektion</a>
+                                </p>
+                                <p>
+                                    <a class="ideaForum" data-bind="attr: { href: 'mailto:' + appInfo.supportEmail }">Har du en god ide?</a>
+                                </p>
+                                <p>
+                                    <a class="contact" data-bind="attr: { href: 'mailto:' + appInfo.supportEmail }">Kontakt support</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="videos size1of3" data-bind="visible: videos.length > 0">
+                            <h3>Videoer</h3>
+                            <ul data-bind="foreach: videos">
+                                <li>
+                                    <img data-bind="assetUrl: { urlId: 'videoImages', path: id + '.jpg' }"/>
+                                    <a href="#" data-bind="click: $parent.playVideo, text: name"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <footer>
+                        <p>
+                            &copy; <span data-bind="text: new Date().getFullYear()"></span> <span data-bind="text: appInfo.appName"></span>
+                            |
+                            <a data-bind="attr: { href: appInfo.termsUrl }" target="_blank" rel="noopener">Terms of Use </a>
+                            |
+                            <a data-bind="attr: { href: appInfo.privacyPolicyUrl }" target="_blank" rel="noopener">Privacy Notice</a>
+
+                        </p>
+                    </footer>
+                </div>
+            </div>
+            <aside>
+                <div class="userPanel">
+                    <span class="userName" data-bind="text: userName"></span>
+                    <span class="expandArrow"></span>
+                </div>
+
+                <a href="#" data-bind="click: close" class="close"></a>
+
+                <section class="userSection">
+                    <div class="leftRight">
+                        <p class="actions"><a href="#" data-bind="navigate: 'server:Profile_EmailAndPassword'">Indstillinger</a></p>
+                        <p class="actions"><a href="#" data-bind="navigate: 'server:Profile_Export'">Eksporter data</a></p>
+                        <p class="actions"><a href="#" data-bind="navigate: 'server:Profile_SupportAccess'">Giv adgang til support</a></p>
+                        <p class="actions"><a href="#" data-bind="navigate: 'server:Profile_ActivityLog'">Aktivitetslog</a></p>
+                        <p class="actions"><a href="#" data-bind="navigate: 'server:Profile_DeleteUser'">Slet bruger</a></p>
+                        <p class="actions"><a href="#" data-bind="navigate: 'server:Profile_StartDate'">Sæt start dato</a></p>
+
+                        <p class="right actions"><a class="btn btn-mini" href="#" data-bind="navigate: 'server:LogOn_LogOff'">Log ud</a></p>
+                    </div>
+                </section>
+            </aside>
+        </div>
+
+        <div class="topBar content twoColumnContent">
+
+            <div class="mainWrapper">
+                <div class="main">
+                    <div data-bind="component: subNavigation"></div>
+                </div>
+            </div>
+
+            <aside>
+                <div class="userPanel">
+                    <span class="userName" data-bind="text: userName"></span>
+                    <span class="expandArrow"></span>
+                </div>
+            </aside>
+
+        </div>
+
+        <div class="handle"></div>
+
+    </div>
+</div>

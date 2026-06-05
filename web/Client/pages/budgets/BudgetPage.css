@@ -1,0 +1,155 @@
+@import 'budgetStart/BudgetStart.css';
+@import 'budgetModal/BudgetModal.css';
+@import 'budgetModal/BudgetModalEditorStep.css';
+@import 'budgetModal/BudgetEditor.css';
+@import 'budgetModal/SimpleBudgetEditor.css';
+@import 'budgetModal/BudgetTip.css';
+@import 'budgetList/budgetList.css';
+@import 'budgetResults/BudgetResults.css';
+@import 'yearPicker/YearPicker.css';
+@import 'budgetModal/ConsumptionLimitModal.css';
+
+.budgetPage {
+  position: relative;
+}
+
+.budgetSidebarLine>section {
+  width: 660px;
+}
+
+.budgetSidebarLine>aside {
+  width: 320px;
+}
+
+@media(min-width:1201px) {
+  .budgetSidebarLine>section {
+    width: 880px;
+  }
+}
+
+.budgetPage .onBudget {
+  color: #09ab58;
+}
+
+.budgetPage .overBudget {
+  color: #ff5252;
+}
+
+.budgetPage .budgetStatus {
+  background: url(images/statusSymbols.png?v=S9E_wh2q9ipvKGcdNJglNJGGzOw) no-repeat 0 0;
+  display: inline-block;
+  height: 17px;
+  width: 15px;
+}
+
+.budgetPage .budgetStatus.overBudget {
+  background-position: 0 -20px;
+}
+
+.budgetTooltip {
+  width: 170px;
+}
+
+.budgetTooltip.twoColumns {
+  width: 340px;
+}
+
+.budgetTooltip .rollover {
+  margin-top: 20px;
+}
+
+.budgetPage .categoryIcon {
+  border-left: 7px solid #000;
+  border-radius: 5px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.budgetPage .category10 {
+  border-color: #9acd32;
+}
+
+.budgetPage .category11 {
+  border-color: #22ae5d;
+}
+
+.budgetPage .category12 {
+  border-color: #3d6ba8;
+}
+
+.budgetPage .category13 {
+  border-color: #5988c3;
+}
+
+.budgetPage .category14 {
+  border-color: #18b0e3;
+}
+
+.budgetPage .category15 {
+  border-color: #f49833;
+}
+
+.budgetPage .category16 {
+  border-color: #85a9d0;
+}
+
+.budgetPage .category17 {
+  border-color: #fbc234;
+}
+
+.budgetPage .category18 {
+  border-color: #80929f;
+}
+
+.budgetPage .category19 {
+  border-color: #ef6231;
+}
+
+.budgetPage .category20 {
+  border-color: #e17db1;
+}
+
+.budgetPage .categoryIcon i {
+  background: url(images/categoryIcons.png?v=S9E_wh2q9ipvKGcdNJglNJGGzOw) no-repeat 0 0;
+  display: block;
+  margin: 15px auto 0;
+  height: 40px;
+  width: 40px;
+}
+
+.budgetPage .category11 i {
+  background-position: 0 0;
+}
+
+.budgetPage .category12 i {
+  background-position: 0 -100px;
+}
+
+.budgetPage .category13 i {
+  background-position: 0 -200px;
+}
+
+.budgetPage .category14 i {
+  background-position: 0 -300px;
+}
+
+.budgetPage .category16 i {
+  background-position: 0 -400px;
+}
+
+.budgetPage .category17 i {
+  background-position: 0 -500px;
+}
+
+.budgetPage .category15 i {
+  background-position: 0 -600px;
+}
+
+.budgetPage .category19 i {
+  background-position: 0 -700px;
+}
+
+.budgetPage .category20 i {
+  background-position: 0 -800px;
+}

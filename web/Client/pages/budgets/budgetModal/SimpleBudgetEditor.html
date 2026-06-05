@@ -1,0 +1,19 @@
+﻿<div class="simpleBudgetEditor">
+    <div class="media">
+        <span data-bind="html: valueLabel"></span>
+        <div class="inputWrapper">
+            <input type="text" data-bind="numericValue: value, valueUpdate: 'afterkeydown'"/>
+            <div data-bind="component: disposableAmountInfo" class="disposableAmountInfo"></div>
+        </div>
+        <span data-bind="text: currency.symbol + '/md'"></span>
+    </div>
+
+    <div data-bind="visible: value() < 0" class="inputWarning">
+        <ul class="notifications">
+            <li class="warning">
+                <div class="icon"></div>
+                <p>Du er ved sætte et negativt beløb på dit budget. Dette er en eksperimentel feature.</p>
+            </li>
+        </ul>
+    </div>
+</div>

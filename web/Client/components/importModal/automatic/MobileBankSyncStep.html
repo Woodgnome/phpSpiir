@@ -1,0 +1,19 @@
+﻿<div data-bind="visible: visible">
+    <h4>Konti hos <strong data-bind="text: bank.name"></strong></h4>
+    <p class="subtitle" data-bind="visible: !processing() && !allAccountsWasPreconfigured()">Gennemgå hver af dine konti.</p>
+    <ul class="notifications" data-bind="visible: errorMessage">
+        <li class="error">
+            <div class="icon"></div>
+            <p data-bind="html: errorMessage"></p>
+        </li>
+    </ul>
+    <div data-bind="component: accounts"></div>
+    <p class="subtitle" data-bind="visible: processing() && !postingsFetched()">Poster til de valgte konti hentes. Hav venligst tålmodighed - dette kan tage nogle minutter.</p>
+    <p class="topActions mtl">
+        <span class="inlineAnchor">
+            <button class="btn btn-primary" data-bind="click: next, disable: processing, text: allAccountsWasPreconfigured() ? 'Fortsæt' : 'Gem opsætning'"></button> 
+            <span class="exclamation numeric" data-bind="text: highlightCount, visible: highlightCount() > 0 && !processing()"></span> 
+            <span class="spinner leftSpinner" data-bind="visible: completingStep"></span>
+        </span>
+    </p>
+</div>

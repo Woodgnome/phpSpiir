@@ -1,0 +1,27 @@
+﻿<div class="bankFinder" data-bind="css: extraClass">
+    <p class="btn-group">
+        <select class="btn btn-mini" data-bind="options: allCountries, optionsValue: 'id', optionsText: 'name', value: selectedCountry, optionsCaption: 'Vælg land...'">
+        </select>
+    </p>
+
+    <p>
+        <input class="query" type="text" data-bind="value: bankQuery, valueUpdate: 'afterkeydown', autoFocus: true, disable: disabled, enter: onEnter" placeholder="Skriv navnet på din bank..." />
+    </p>
+
+    <div class="banks">
+        <p data-bind="visible: filteredBanks().length === 0">Ingen banker fundet.</p>
+
+        <ul data-bind="foreach: filteredBanks" class="inner">
+            <li data-bind="css: { selected: $data === $parent.selectedBank() }">
+                <a href="#" data-bind="click: $parent.selectBank.bind($parent)">
+                    <span class="bankName" data-bind="text: name"></span>
+                    <!--ko if: $parent.showTags-->
+                    <span class="tag betaTag" data-bind="visible: markAsBeta">Beta</span>
+                    <!--/ko-->
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+</div>

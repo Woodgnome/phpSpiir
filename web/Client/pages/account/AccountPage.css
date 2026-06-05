@@ -1,0 +1,184 @@
+@import 'accountSidebar/AccountSidebar.css';
+@import 'accountModal/AccountModal.css';
+@import 'accountPeriods/AccountPeriods.css';
+@import 'accountList/AccountList.css';
+
+.accountPage .number {
+  letter-spacing: 0;
+}
+
+.accountPage .accountGroupPeriods {
+  margin: 0 0 0 100px;
+}
+
+.accountPage .togglePeriods {
+  background: url(../images/plusMinus.png?v=JFouoIk7bgAid56zpypUDg7lf2Q) no-repeat 0 0;
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+}
+
+.accountPage .togglePeriods.expanded {
+  background-position: 0 -50px;
+}
+
+.accountsPageTitle {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.accountsPageTitle .accountFilter {
+  margin-left: 20px;
+}
+
+.accountGroup {
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
+.accountPagePopover {
+  width: 280px;
+}
+
+.accountPagePopover .periodPostings {
+  height: 112px;
+  overflow: auto;
+  border: 1px solid #ccc;
+  margin: 10px 5px;
+}
+
+.accountPagePopover .periodPostings ul {
+  overflow: hidden;
+  font-size: 11px;
+  padding: 4px;
+  margin: 0;
+  border-bottom: 1px solid #eee;
+}
+
+.accountPagePopover .periodPostings ul li {
+  float: left;
+  width: 23%;
+}
+
+.accountPagePopover .periodPostings ul li.description {
+  width: 33%;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.accountPagePopover .periodPostings ul li.amount {
+  text-align: right;
+  width: 22%;
+}
+
+.accountPagePopover select {
+  max-width: 70%;
+}
+
+.accountGroupHeader {
+  cursor: pointer;
+  background-image: linear-gradient(to bottom,#fbf9f9,#f4f4f4);
+  border-radius: 5px;
+  box-shadow: 0 2px 3px 0 #bbb;
+  overflow: hidden;
+  height: 72px;
+}
+
+.accountGroupHeader .categoryIcon {
+  float: left;
+  border-left: 7px solid #000;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  height: 100%;
+  width: 52px;
+}
+
+.accountGroupHeader.consumption .categoryIcon {
+  border-color: #ffde00;
+}
+
+.accountGroupHeader.loan .categoryIcon {
+  border-color: #f00;
+}
+
+.accountGroupHeader.savings .categoryIcon {
+  border-color: #bce061;
+}
+
+.accountGroupHeader .categoryIcon i {
+  background: url(../budgets/images/categoryIcons.png?v=JFouoIk7bgAid56zpypUDg7lf2Q) no-repeat 0 0;
+  display: block;
+  margin: 15px auto 0;
+  height: 40px;
+  width: 40px;
+}
+
+.accountGroupHeader.consumption .categoryIcon i {
+  background-position: 0 -400px;
+}
+
+.accountGroupHeader.loan .categoryIcon i {
+  background-position: 0 -700px;
+}
+
+.accountGroupHeader.savings .categoryIcon i {
+  background-position: 0 -800px;
+}
+
+.accountGroupHeader .rightColumn {
+  float: right;
+  width: 150px;
+  text-align: right;
+}
+
+.accountGroupHeader .title {
+  color: #929292;
+  font-size: .79em;
+  text-transform: uppercase;
+}
+
+.accountGroupHeader h3,.accountGroupHeader .info {
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.accountGroupHeader .value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #3f3f3f;
+}
+
+.accountGroupHeader:hover {
+  background: #f5f5f5;
+}
+
+.accountGroupHeader .lastUpdated {
+  color: #929292;
+  font-size: .54em;
+  text-transform: uppercase;
+  margin-left: 15px;
+  padding-left: 15px;
+  background-repeat: no-repeat;
+  background-position: left 2px;
+  background-size: 9px auto;
+}
+
+.accountGroupHeader .lastUpdated.isAutomaticAccount {
+  background-image: url('../images/automaticSync.svg?v=JFouoIk7bgAid56zpypUDg7lf2Q');
+}
+
+.accountGroupHeader .lastUpdated.isManualAccount {
+  background-image: url('../images/manualSync.svg?v=JFouoIk7bgAid56zpypUDg7lf2Q');
+}

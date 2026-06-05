@@ -1,0 +1,85 @@
+<div class="content twoColumnContent" data-bind="visible: hasPostings()" style="display: none">
+    <div class="mainWrapper">
+        <div class="main">
+            <div class="chartLine">
+                <h1>Indkomst og udgifter</h1>
+                <div class="chart" data-bind="chart: incomeExpenseChart" style="height: 200px;"></div>
+                <div class="chartMenu" data-bind="listOptions: periods, listValue: currentPeriod, optionsText: 'label'"></div>
+            </div>
+            <div data-bind="component: categoryChart"></div>
+
+            <div class="pageLoader" data-bind="animated: {effect: 'fade', visible: loading, speed: 'fast'}">
+                <div class="loadingSpinner"></div>
+            </div>
+        </div>
+    </div>
+    <aside class="sidebar">
+        <section>
+            <h2 data-bind="text: periodTotalsTitle"></h2>
+            <p class="sidebarKeyNumber labelledNumber">
+                <span class="title">Resultat</span>
+                <br />
+                <span class="number currency" data-bind="formatNumber: averageMonthResult, currency: currency"></span>
+                <br />
+                <small>gns/md</small>
+            </p>
+            <div class="tableFrame mtl">
+                <table>
+                    <tr>
+                        <td>Indkomst</td>
+                        <td class="amount"><span class="number currency" data-bind="formatNumber: periodTotals().income, currency: currency"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Regninger</td>
+                        <td class="amount"><span class="number currency" data-bind="formatNumber: periodTotals().bills, currency: currency"></span></td>
+                    </tr>
+                    <tr class="separatorAfter">
+                        <td>Forbrug</td>
+                        <td class="amount"><span class="number currency" data-bind="formatNumber: periodTotals().consumption, currency: currency"></span></td>
+                    </tr>
+                    <tr class="separaterBefore result" data-bind="css: { negative: periodTotals().result < 0 }">
+                        <td>Resultat</td>
+                        <td class="amount"><span class="number currency" data-bind="formatNumber: periodTotals().result, currency: currency"></span></td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="extraordinaryResult">
+                <p class="labelledNumber smallLabelledNumber">
+                    <span class="title">Opsparing</span>
+                    <br />
+                    <span class="number currency" data-bind="formatFlippedNumber: periodTotals().savings, currency: currency"></span>
+                </p>
+                <p class="labelledNumber smallLabelledNumber">
+                    <span class="title">Resultat m. opsparing</span>
+                    <br />
+                    <span class="number currency" data-bind="formatNumber: periodTotals().resultWithSaving, currency: currency"></span>
+                </p>
+            </div>
+
+            <div class="extraordinaryResult" data-bind="visible: showExtraordinaryResult, tooltipBase: extraordinaryTooltip">
+                <p class="labelledNumber smallLabelledNumber">
+                    <span class="title">Resultat m. ekstraordinære</span>
+                    <br />
+                    <span class="number currency" data-bind="formatNumber: resultWithExtraordinary, currency: currency"></span>
+            </div>
+        </section>
+    </aside>
+</div>
+
+<div data-bind="visible: hasPostings() === false" class="content" style="display: none">
+    <div class="main">
+        <div class="pageIntroduction overviewPageIntroduction">
+            <div class="center">
+                <h1 class="mbn">Du kan nemt se, hvad du bruger penge på</h1>
+                <p class="mtn">
+                    Spiir tager sig af alt det kedelige arbejde. Poster fra din netbank indeles i kategorier, og Spiir giver dig et simpelt og visuelt overblik over, hvad du bruger pengene på. Hos Spiir er der ingen konvolutter, du skal gemme penge og kvitteringer i. Det hører fortiden til. Med Spiir får du det hele foræret.
+                </p>
+                <p class="action">
+                    <a class="btn btn-large btn-primary" data-bind="navigate: { routeId: 'account-index', parameters: { addNewBank: true } }">Tilføj din bank</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

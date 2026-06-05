@@ -1,0 +1,24 @@
+﻿<div class="row clearfix" data-bind="click: click, css: { expanded: isExpanded, tonedDown: isTonedDown }">
+    <div class="leftColumn">
+        <div class="leftFrame" data-bind="css: { frame: showCategoryIcon }">
+            <div data-bind="visible: showCategoryIcon, attr: { 'class': 'categoryIcon category' + categoryId }"><i></i></div>
+            <div class="name">
+                <h4 data-bind="text: name"></h4>
+            </div>
+            <div class="amount">
+                <p><span class="number currency"  data-bind="formatNumber: amount, currency: currency"></span>
+                    <br/><small>gns/md</small></p>
+            </div>
+        </div>
+    </div>
+    <div class="rightColumn">
+        <ul data-bind="foreach: months" class="months hideWhenExpanded">
+            <li data-bind="attr: { 'class': status + (warning ? ' warning' : '') }">
+                <span class="monthName" data-bind="text: monthName"></span>
+                <div class="bulletFrame budgetTooltipTrigger">
+                    <div class="bullet"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

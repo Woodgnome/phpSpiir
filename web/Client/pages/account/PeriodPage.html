@@ -1,0 +1,70 @@
+﻿<div class="content twoColumnContent periodPage">
+    <div class="mainWrapper">
+        <div class="main">
+            <header>
+                <h1>Konti &ndash; perioder</h1>
+            </header>
+
+            <div class="periodChartContainer">
+                <ul class="periodChartLegend">
+                    <li>
+                        <span class="normalPostings"></span>
+                        Synlige poster
+                    </li>
+                    <li>
+                        <span class="ignoredPostings"></span>
+                        Skjulte poster
+                    </li>
+                </ul>
+                <div data-bind="foreach: xAxisLabels" class="periodChartXAxisLabels">
+                    <div class="line" data-bind="style: { left: left, right: right }, css: { major: major }">
+                        <span class="text" data-bind="text: text"></span>
+                    </div>
+                </div>
+                <div data-bind="component: accountPeriods"></div>
+            </div>
+
+            <div class="pageLoader" data-bind="animated: { effect: 'fade', visible: processing, speed: 'fast' }">
+                <div class="loadingSpinner"></div>
+            </div>
+        </div>
+    </div>
+    <aside class="sidebar accountSidebar">
+        <section>
+            <h2>Konti & Perioder</h2>
+            <p>
+                <em>
+                    Manuel styring af perioder er en <strong>ekspert-funktion</strong>, og bør kun benyttes,
+                    hvis du ikke kan indlæse poster som overlapper perioder.
+                </em>
+            </p>
+            <h4>Er den samme konto flere gange?</h4>
+            <p>
+                Hvis den samme konto forekommer to eller flere gange, så bør du hente og indlæse et fuldt udtræk med 12 måneders poster fra kontoen,
+                og når du indlæser vil Spiir slå konti sammen - <em>tro os... det virker!</em>
+            </p>
+            <p>
+                Hvis du ikke kan lave et overlap - fx. hvis du ikke har haft poster på kontoen i et år -
+                så kan du flette to konti sammen ved at flytte en periode (blå bjælke) fra en konto til en anden.
+            </p>
+            <h4>Har du dubletter?</h4>
+            <p>
+                Hvis du på et tidspunkt selv har manipuleret filer, eller hvis banken har ændret tekst på dine poster med tilbagevirkende kraft,
+                så kan vores overlapsdetektering fejle, og du vil have dubletter i Spiir. Du kan bruge denne side til at flette konti sammen og Spiir vil så skjule dubletter.
+            </p>
+            <p>
+                <strong>Bemærk:</strong>
+                <em>
+                    Hvis du fletter to perioder, der overlapper, kan du miste kommentarer, splits, tags o.l.
+                    Vi sletter dog aldrig poster når der flettes, så du kan altid splitte kontoen igen, hvorved alt gendannes.
+                </em>
+            </p>
+        </section>
+        
+        <section class="separatorTop">
+            <p style="text-align: center">
+                <a class="btn btn-mini" href="#" data-bind="navigate: 'account-index'">Tilbage til kontiside</a>
+            </p>
+        </section>
+    </aside>
+</div>

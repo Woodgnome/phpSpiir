@@ -1,0 +1,22 @@
+﻿<div class="introTooltip transparent" style="width: 150px;">
+    <div class="arrow bottom"></div>
+
+    <h3 data-bind="formatMonth: point().month"></h3>
+
+    <p class="labelledNumber">
+        <span class="title" data-bind="text: primaryCategoryName"></span>
+        <br/>
+        <span data-bind="attr: { 'class': 'chartBullet ' + primaryBulletClass }"></span>
+        <span class="number currency" data-bind="formatNumber: point().primaryCategoryAmount, currency: currency"></span>
+        <br />
+        <small>GNS <span data-bind="formatNumber: primaryAverage, currency: currency"></span></small>
+    </p>
+    <p class="labelledNumber" data-bind="visible: showSecondarySeries">
+        <span class="title" data-bind="summarize: { text: secondaryCategoryName, length: 17 }"></span>
+        <br/>
+        <span class="chartBullet comparisonBullet"></span>
+        <span class="number currency" data-bind="formatNumber: point().secondaryCategoryAmount, currency: currency"></span>
+        <br />
+        <small>GNS <span data-bind="formatNumber: secondaryAverage, currency: currency"></span></small>
+    </p>
+</div>

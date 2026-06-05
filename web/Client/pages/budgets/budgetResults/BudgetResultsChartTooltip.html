@@ -1,0 +1,40 @@
+﻿<div class="introTooltip transparent budgetResultsChartTooltip" style="width: 300px;" data-offset-x="58">
+    <div class="arrow bottom"></div>
+
+    <div class="columns">
+        <div class="leftColumn">
+            <h3>
+                Saldo
+                <span data-bind="formatMonth: { month: point().month, format: '%B', capitalize: false }"></span>
+            </h3>
+
+            <p class="labelledNumber">
+                <span class="title">Budget</span>
+                <br/>
+                <span class="chartBullet budgetBullet"></span>
+                <span class="number currency" data-bind="formatNumber: point().budgetBalance, currency: currency"></span>
+            </p>
+
+            <p class="labelledNumber">
+                <span class="title" data-bind="text: isProjected() ? 'Prognose' : 'Faktisk'"></span>
+                <br/>
+                <span data-bind="css: { consumptionBullet: !isProjected(), projectedBullet: isProjected }" class="chartBullet"></span>
+                <span class="number currency" data-bind="formatNumber: point().realizedBalance, currency: currency"></span>
+            </p>
+
+        </div>
+
+        <div class="rightColumn">
+            <h3>
+                I forhold til budget
+            </h3>
+            <div data-bind="foreach: budgetTypeItems">
+                <p class="labelledNumber budgetTypeItem">
+                    <span class="title" data-bind="text: title"></span>
+                    <br/>
+                    <span class="number currency difference" data-bind="formatNumber: Math.abs(difference()), currency: $parent.currency, css: { over: offBudget }"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

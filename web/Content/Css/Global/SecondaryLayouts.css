@@ -1,0 +1,62 @@
+.publicMaster,.publicMaster body {
+  height: 100%;
+}
+
+.publicMaster .page {
+  min-height: 100%;
+  position: relative;
+  background: #ab9e85 url(PublicMaster/wood1440.jpg?v=JFouoIk7bgAid56zpypUDg7lf2Q) repeat center -50px;
+}
+
+@media(max-width:1025px) {
+  .publicMaster .page {
+    background-image: url(PublicMaster/wood1024.jpg?v=JFouoIk7bgAid56zpypUDg7lf2Q);
+  }
+}
+
+@media(min-width:1441px) {
+  .publicMaster .page {
+    background-image: url(PublicMaster/wood2560.jpg?v=JFouoIk7bgAid56zpypUDg7lf2Q);
+  }
+}
+
+@media(min-width:1400px) {
+  .publicMaster .coffee {
+    background: url(PublicMaster/coffee.png?v=JFouoIk7bgAid56zpypUDg7lf2Q) no-repeat 0 0;
+    bottom: 0;
+    height: 377px;
+    position: absolute;
+    right: 0;
+    width: 526px;
+  }
+}
+
+.publicMaster .container {
+  position: relative;
+  width: 460px;
+  margin: 0 auto;
+  padding: 80px 0 10px 0;
+}
+
+.errorMaster .container {
+  width: 693px;
+  margin: 0 auto;
+}
+
+.errorMaster .mainContainer {
+  padding-top: 50px;
+}
+
+@media(max-width:767px) {
+  .publicMaster .page {
+    background: #fff;
+  }
+
+  .publicMaster .container {
+    background: url(PublicMaster/logo.svg?v=JFouoIk7bgAid56zpypUDg7lf2Q&1) no-repeat center 10vh;
+    background-size: auto 75px;
+    padding: 26vh 0 10px 0;
+    width: auto;
+    max-width: 400px;
+  }
+}

@@ -1,0 +1,45 @@
+﻿<div class="content twoColumnContent">
+    <div class="mainWrapper">
+        <div class="main">
+            <h1>Mine udgifter til
+                <select data-bind="options: categories, value: categoryId, optionsValue: 'id', optionsText: 'name', optionsCaption: 'alle kategorier'"></select>
+            </h1>
+            <div class="chartLine">
+                <h2>Hvordan har mine udgifter udviklet sig over tid?</h2>
+                <div style="position: relative">
+                    <div data-bind="component: historyChart"></div>
+                    <select data-bind="options: comparisonCategories, value: comparisonCategoryId, optionsValue: 'rowKey', optionsText: 'name', optionsCaption: 'Sammenlign...' "
+                        class="chartSelect">
+                    </select>
+                </div>
+                <div class="chartMenu" data-bind="listOptions: periods, listValue: currentPeriod, optionsText: 'label'"></div>
+            </div>
+            <div data-bind="component: categoryChart"></div>
+
+            <div class="pageLoader" data-bind="animated: {effect: 'fade', visible: loading, speed: 'fast'}">
+                <div class="loadingSpinner"></div>
+            </div>
+        </div>
+    </div>
+    <aside class="sidebar">
+        <section>
+            <h2 data-bind="text: sidebarTitle"></h2>
+
+            <p class="sidebarKeyNumber labelledNumber">
+                <span class="title">Gennemsnit <span data-bind="text: periodTotalsTitle()"></span></span>
+                <br />
+                <span class="number currency" data-bind="formatNumber: periodAverage, currency: currency"></span>
+                <br />
+                <small>Total <span data-bind="formatNumber: periodTotal, currency: currency"></span></small>
+            </p>
+
+            <div class="extraordinaryResult" data-bind="visible: extraordinaryAmount, tooltipBase: extraordinaryTooltip">
+                <p class="labelledNumber smallLabelledNumber">
+                    <span class="title">Ekstraordinære poster</span>
+                    <br />
+                    <span class="number currency" data-bind="formatNumber: extraordinaryAmount, currency: currency"></span>
+                </p>
+            </div>
+        </section>
+    </aside>
+</div>

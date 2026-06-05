@@ -1,0 +1,20 @@
+﻿require(
+    [
+        'lib/order!../lib/jquery/jquery-1.12.4',
+        'lib/order!../lib/jquery/jquery-migrate-1.4.1',
+        'lib/order!../lib/jquery/jquery.ui.position',
+        'lib/order!lib/jquery.cookie',
+        'lib/order!lib/underscore',
+        'lib/order!lib/highcharts',
+        'lib/order!lib/raphael',
+        'lib/order!lib/bootstrap-dropdown',
+        'lib/order!lib/plupload/plupload',
+        'lib/order!lib/plupload/plupload.html5',
+        'lib/order!utilities/extensions',
+        'lib/order!utilities/jqueryPlugins/jquery.combobox',
+        'lib/order!utilities/jqueryPlugins/jquery.scrollintoview',
+        'lib/order!main'
+    ],
+    function() {
+    }
+);

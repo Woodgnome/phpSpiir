@@ -1,0 +1,716 @@
+[
+  {
+    "id": "100",
+    "name": "Kontooverførsel",
+    "categoryId": "10",
+    "expenseType": "None",
+    "categoryType": "Exclude",
+    "hints": null
+  },
+  { "id": "101", "name": "Udlæg", "categoryId": "10", "expenseType": "None", "categoryType": "Exclude", "hints": null },
+  {
+    "id": "102",
+    "name": "Ignorer",
+    "categoryId": "10",
+    "expenseType": "None",
+    "categoryType": "Exclude",
+    "hints": null
+  },
+  { "id": "103", "name": "Løn", "categoryId": "11", "expenseType": "Fixed", "categoryType": "Income", "hints": null },
+  {
+    "id": "104",
+    "name": "Pensionsudbetaling",
+    "categoryId": "11",
+    "expenseType": "Fixed",
+    "categoryType": "Income",
+    "hints": "Tjenestemandspension;Førtidspension"
+  },
+  {
+    "id": "105",
+    "name": "Dagpenge/overførselsindkomst",
+    "categoryId": "11",
+    "expenseType": "Fixed",
+    "categoryType": "Income",
+    "hints": "Kontanthjælp"
+  },
+  {
+    "id": "106",
+    "name": "SU & studielån",
+    "categoryId": "11",
+    "expenseType": "Fixed",
+    "categoryType": "Income",
+    "hints": null
+  },
+  {
+    "id": "107",
+    "name": "Børnepenge",
+    "categoryId": "11",
+    "expenseType": "Fixed",
+    "categoryType": "Income",
+    "hints": "Familieydelse;Børnecheck"
+  },
+  {
+    "id": "108",
+    "name": "Underholds- & børnebidrag",
+    "categoryId": "11",
+    "expenseType": "Fixed",
+    "categoryType": "Income",
+    "hints": null
+  },
+  {
+    "id": "109",
+    "name": "Feriepenge",
+    "categoryId": "11",
+    "expenseType": "Variable",
+    "categoryType": "Income",
+    "hints": null
+  },
+  {
+    "id": "110",
+    "name": "Renteindtægter",
+    "categoryId": "11",
+    "expenseType": "Variable",
+    "categoryType": "Income",
+    "hints": null
+  },
+  {
+    "id": "111",
+    "name": "Udbytte & afkast",
+    "categoryId": "11",
+    "expenseType": "Variable",
+    "categoryType": "Income",
+    "hints": "Bonus"
+  },
+  {
+    "id": "112",
+    "name": "Overskydende skat",
+    "categoryId": "11",
+    "expenseType": "Variable",
+    "categoryType": "Income",
+    "hints": null
+  },
+  {
+    "id": "113",
+    "name": "Anden indkomst",
+    "categoryId": "11",
+    "expenseType": "Variable",
+    "categoryType": "Income",
+    "hints": "Arveforskud;Pengegaver"
+  },
+  {
+    "id": "114",
+    "name": "Boliglån/husleje",
+    "categoryId": "12",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Pantebreve;Realkreditlån;Rent"
+  },
+  {
+    "id": "115",
+    "name": "El, vand, varme & renovation",
+    "categoryId": "12",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Gas;Oliefyr;Naturgas;Fjernvarme;Affald;Skrald"
+  },
+  {
+    "id": "116",
+    "name": "Ejerforening",
+    "categoryId": "12",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Grundejerforening;Parcelforening"
+  },
+  {
+    "id": "117",
+    "name": "Ejendomsskat",
+    "categoryId": "12",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Grundskyld"
+  },
+  {
+    "id": "118",
+    "name": "Husforsikring",
+    "categoryId": "12",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Villaforsikring"
+  },
+  {
+    "id": "119",
+    "name": "Indbo- & familieforsikring",
+    "categoryId": "12",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Basisforsikring"
+  },
+  {
+    "id": "120",
+    "name": "Alarmsystem",
+    "categoryId": "12",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": null
+  },
+  {
+    "id": "121",
+    "name": "Udgifter fritidshus",
+    "categoryId": "12",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Udgifter sommerhus;Udgifter campingvogn"
+  },
+  {
+    "id": "122",
+    "name": "Ombygning & vedligehold",
+    "categoryId": "12",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Udbygning;Maler;VVS;Tømrer;Murer;Elektriker;Nyt køkken;Reparation;Arkitekt"
+  },
+  {
+    "id": "123",
+    "name": "Bil-, MC-, bådlån o.l.",
+    "categoryId": "13",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Billån;Motorcykellån"
+  },
+  {
+    "id": "124",
+    "name": "Brændstof",
+    "categoryId": "13",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Benzin;Diesel;Tankstation"
+  },
+  {
+    "id": "125",
+    "name": "Bilforsikring & autohjælp",
+    "categoryId": "13",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Falck;FDM;Vejhjælp"
+  },
+  {
+    "id": "126",
+    "name": "Ejerafgift/grøn afgift",
+    "categoryId": "13",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Vægtafgift;Bilafgift"
+  },
+  {
+    "id": "127",
+    "name": "Bus, tog, færge o.l.",
+    "categoryId": "13",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Brobizz;Metro;S-tog;Arriva;DSB;Broafgift;Månedskort;Togkort;Buskort;Vejafgift;Pendlerkort;Periodekort;Rejsekort;Klippekort"
+  },
+  {
+    "id": "128",
+    "name": "Taxi",
+    "categoryId": "13",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Taxa;Hyrevogn;Uber"
+  },
+  {
+    "id": "129",
+    "name": "Parkering",
+    "categoryId": "13",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Parkpark;easypark;QPark"
+  },
+  {
+    "id": "130",
+    "name": "Værksted & reservedele",
+    "categoryId": "13",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Syn;Service;Reparation;Vinterdæk;Fælge;Bilreparation;Bilvask"
+  },
+  {
+    "id": "131",
+    "name": "Anden transport",
+    "categoryId": "13",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Ny bil;Ny motorcykel;Ny båd;Ny cykel;Ny MC;Gomore;Cykel;El-løbehjul"
+  },
+  {
+    "id": "132",
+    "name": "Dagligvarer",
+    "categoryId": "14",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Mad;Supermarked;Madvarer;"
+  },
+  {
+    "id": "133",
+    "name": "Kiosk, bager & specialbutikker",
+    "categoryId": "14",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Brød;Kager;Frugt;Købmand;Slik;Tankstation"
+  },
+  {
+    "id": "134",
+    "name": "Apotek & medicin",
+    "categoryId": "16",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Creme;Personlig pleje;Astma"
+  },
+  {
+    "id": "135",
+    "name": "Fly & Hotel",
+    "categoryId": "15",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Charterferie;Rejser"
+  },
+  {
+    "id": "138",
+    "name": "Billeje",
+    "categoryId": "15",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Hertz;Avis"
+  },
+  {
+    "id": "139",
+    "name": "Sommerhus & camping",
+    "categoryId": "15",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": null
+  },
+  {
+    "id": "140",
+    "name": "Ferieaktiviteter",
+    "categoryId": "15",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Skileje;Liftkort;Skiskole;Tivoli"
+  },
+  {
+    "id": "141",
+    "name": "Rejseforsikring",
+    "categoryId": "15",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": null
+  },
+  {
+    "id": "142",
+    "name": "Underholds- & børnebidrag",
+    "categoryId": "16",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": null
+  },
+  {
+    "id": "143",
+    "name": "Institution",
+    "categoryId": "16",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Madordning;Klassekasse;Børnehave;Vuggestue;SFO;Fritidshjem;Dagpleje;Efterskole;Privatskole;Daginstitution"
+  },
+  {
+    "id": "144",
+    "name": "Fagforening & a-kasse",
+    "categoryId": "16",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Fagligt kontingent;Akasse;HK;3F;Prosa"
+  },
+  {
+    "id": "145",
+    "name": "Livs- & ulykkesforsikring",
+    "categoryId": "16",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Gruppeliv"
+  },
+  {
+    "id": "146",
+    "name": "Sundheds- & sygeforsikring",
+    "categoryId": "16",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Forebygger"
+  },
+  {
+    "id": "147",
+    "name": "Sport & fritid",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Spejder;Fitness;Styrketræning;Aftenskole;Håndbold;Fodbold;Basket;Badminton;Tennis;Svømning;Squash;Golf"
+  },
+  {
+    "id": "148",
+    "name": "TV & streaming",
+    "categoryId": "16",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Kabel TV;Viasat;Sattelit;Antenneforening;Radio;Netflix;HBO;Viaplay"
+  },
+  {
+    "id": "149",
+    "name": "Telefoni & internet",
+    "categoryId": "16",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Mobiltelefon;Taletidskort;Udlandstelefoni;Fastnet;Fiber;ADSL;Bredbånd;"
+  },
+  {
+    "id": "151",
+    "name": "Hus & havehjælp",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Rengøring;Gartner;Vinduespudser"
+  },
+  {
+    "id": "153",
+    "name": "Behandling & læger",
+    "categoryId": "16",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Tandlæge;Øjenlæge;Speciallæge;Kiropraktor;Fysioterapeut;Psykolog;Hypnotisør;Akupunktør;Zoneterapeut"
+  },
+  {
+    "id": "154",
+    "name": "Briller & kontaktlinser",
+    "categoryId": "16",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Optiker"
+  },
+  {
+    "id": "155",
+    "name": "Fastfood & takeaway",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Junkfood;Burger;Sushi;Pizzaria;Takeaway;Indisk"
+  },
+  {
+    "id": "156",
+    "name": "Bar, cafe & restaurant",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Diskotek;Værtshus;Disco;Fest;Middag"
+  },
+  {
+    "id": "157",
+    "name": "Tøj, sko & accessories",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Smykker;Bukser;Bluse;Jeans;Kjole;Taske;Jakke;Frakke;Støvler;Ring;Halskæde;T-shirt;Skjorte;Beklædning"
+  },
+  {
+    "id": "158",
+    "name": "Møbler & boligudstyr",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Køkkenudstyr;Sofa;Seng;Bord;Stole;Hvidevarer;Lamper;Malerier;Kunst;Inventar"
+  },
+  {
+    "id": "159",
+    "name": "Elektronik & computerudstyr",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Ny mobiltelefon;Playstation;Wii;XBOX;Konsol;Reparation;PC;Nintendo"
+  },
+  {
+    "id": "160",
+    "name": "Spil & legetøj",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Playstation spil;XBOX spil;Wii spil;PC spil"
+  },
+  {
+    "id": "161",
+    "name": "Hobby & sportsudstyr",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Skitøj;Golfudstyr;Surfudstyr;Løbesko;Løbetøj;Pulsmåler;"
+  },
+  {
+    "id": "162",
+    "name": "Frisør & personlig pleje",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Parfume;Klipning;Hårklip;Creme;Massage;Coaching;Wellness;Solcenter"
+  },
+  {
+    "id": "163",
+    "name": "Film, musik & læsestof",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Bøger;Blade;Aviser;Magasiner;DVD;CD;MP3;Itunes;Dameblade;Faglitteratur;Fagbøger;Skønlitteratur;Spotify"
+  },
+  {
+    "id": "164",
+    "name": "Biograf, koncerter & forlystelser",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Museum;Kultur;Biffen;Musik;Billetter;Tivoli;Sommerland;Legeland"
+  },
+  {
+    "id": "165",
+    "name": "Tips & lotto",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Poker;Klasselotteri;Casino;Odds;Kasino;Lotteri;Banko;Bingo"
+  },
+  {
+    "id": "167",
+    "name": "Babyudstyr",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Barnevogn;Klapvogn;Barneseng"
+  },
+  {
+    "id": "168",
+    "name": "Kæledyr",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Hund;Kat;Edderkop"
+  },
+  {
+    "id": "169",
+    "name": "Gaver & velgørenhed",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Nødhjælp;Blomster;Donationer;Røde Kors;Red Barnet;Folkekirkens Nødhjælp;WWF Verdensnaturfonden;WSPA;Børnefonde;Læger uden grænser;Amnesty International;Unicef;Gave"
+  },
+  {
+    "id": "170",
+    "name": "Andet privatforbrug",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Barnepige;Frimærker;Babysitter;Fragt;Posthus;Pakker;Lommepenge;Kontorartikler;Tøjrens;Renseri;Kreditkort"
+  },
+  {
+    "id": "171",
+    "name": "Ukendt",
+    "categoryId": "18",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Ved ikke"
+  },
+  {
+    "id": "172",
+    "name": "Kontanthævning & check",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Hæveautomat"
+  },
+  {
+    "id": "174",
+    "name": "Bankgebyrer",
+    "categoryId": "18",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": null
+  },
+  {
+    "id": "175",
+    "name": "Rykkergebyrer",
+    "categoryId": "18",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": null
+  },
+  {
+    "id": "176",
+    "name": "Bøder & afgifter",
+    "categoryId": "18",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "fartbøde;parkeringsbøde"
+  },
+  {
+    "id": "177",
+    "name": "Restskat",
+    "categoryId": "18",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": null
+  },
+  {
+    "id": "178",
+    "name": "Studielån",
+    "categoryId": "19",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": null
+  },
+  {
+    "id": "179",
+    "name": "Forbrugslån",
+    "categoryId": "19",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": null
+  },
+  {
+    "id": "180",
+    "name": "Private lån (venner & familie)",
+    "categoryId": "19",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": null
+  },
+  {
+    "id": "181",
+    "name": "Udlånsrenter",
+    "categoryId": "19",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": null
+  },
+  {
+    "id": "182",
+    "name": "Pensionsopsparing",
+    "categoryId": "20",
+    "expenseType": "Fixed",
+    "categoryType": "Saving",
+    "hints": "Ratepension;Kapitalpension"
+  },
+  {
+    "id": "183",
+    "name": "Børneopsparing",
+    "categoryId": "20",
+    "expenseType": "Fixed",
+    "categoryType": "Saving",
+    "hints": null
+  },
+  {
+    "id": "184",
+    "name": "Anden opsparing",
+    "categoryId": "20",
+    "expenseType": "Fixed",
+    "categoryType": "Saving",
+    "hints": "Ferieopsparing"
+  },
+  {
+    "id": "185",
+    "name": "Værdipapirshandel",
+    "categoryId": "20",
+    "expenseType": "Variable",
+    "categoryType": "Saving",
+    "hints": "Investering;Aktier"
+  },
+  {
+    "id": "186",
+    "name": "Online services & software",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Webhotel;Itunes;Domæne;Apps"
+  },
+  {
+    "id": "187",
+    "name": "Andre boligudgifter",
+    "categoryId": "12",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Flytning;Advokat;Ejendomsmægler;Ejerskifteforsikring;Depositum;Møntvaskeri;Vaskeri;Tøjvask"
+  },
+  {
+    "id": "188",
+    "name": "Tobak & alkohol",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Spiritus;Cigaretter;Øl;Vin;Snus;Vape"
+  },
+  {
+    "id": "189",
+    "name": "Studieudgifter",
+    "categoryId": "16",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Studiebøger;Kopier;Faglitteratur;Fagbøger"
+  },
+  {
+    "id": "190",
+    "name": "Boligstøtte",
+    "categoryId": "11",
+    "expenseType": "Fixed",
+    "categoryType": "Income",
+    "hints": "Boligsikring;Boligtilskud"
+  },
+  {
+    "id": "191",
+    "name": "Foreninger & kontingenter",
+    "categoryId": "16",
+    "expenseType": "Fixed",
+    "categoryType": "Expense",
+    "hints": "Medlemsskab"
+  },
+  {
+    "id": "192",
+    "name": "Kantine- & frokostordning",
+    "categoryId": "14",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Madordning;Skolemad"
+  },
+  {
+    "id": "193",
+    "name": "Højskole- & kursusophold",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": null
+  },
+  {
+    "id": "194",
+    "name": "Serviceydelser & rådgivning",
+    "categoryId": "17",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Revisor;Advokat;Privatøkonomisk rådgiver;Coaching"
+  },
+  {
+    "id": "195",
+    "name": "Have & planter",
+    "categoryId": "12",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Blomster;Potter"
+  },
+  {
+    "id": "196",
+    "name": "Offentligt gebyr",
+    "categoryId": "18",
+    "expenseType": "Variable",
+    "categoryType": "Expense",
+    "hints": "Pas;Kørekort;Kommune;told"
+  }
+]

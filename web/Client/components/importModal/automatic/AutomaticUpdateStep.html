@@ -1,0 +1,27 @@
+﻿<div data-bind="visible: visible">
+    <div class="automaticLoginStep">
+        <p data-bind="visible: !showErrorMessage()">
+            <span class="spinner"></span>
+            Logger på <span data-bind="text: bankName"></span>...
+        </p>
+
+        <div data-bind="visible: showErrorMessage()">
+            <ul class="notifications">
+                <li class="error">
+                    <div class="icon"></div>
+                    <p data-bind="text: errorTitle"></p>
+                </li>
+            </ul>
+
+            <p style="text-align: left">
+                <span data-bind="html: errorMessage, visible: errorMessage"></span>&nbsp;
+            </p>
+
+            <span class="inlineAnchor">
+                <button type="button" class="btn btn-primary" data-bind="click: buttonAction, text: buttonText">
+                    Forsøg igen
+                </button>
+            </span>
+        </div>
+    </div>
+</div>

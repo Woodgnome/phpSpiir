@@ -1,0 +1,29 @@
+﻿<div class="accountGroup">
+    <div class="accountGroupHeader" data-bind="click: click, css: cssClass">
+        <div class="categoryIcon"><i></i></div>
+        <div class="rightColumn dateColumn">
+            <p>
+                <span class="title">Sidste post</span>
+                <br />
+                <span class="value" data-bind="formatDate: { date: endDate, format: '%e. %b %Y' }, visible: numberOfPostings > 0"></span>
+                <span class="noPostings" data-bind="visible: numberOfPostings == 0">-</span>
+            </p>
+        </div>
+        <div class="rightColumn">
+            <p>
+                <span class="title">Saldo</span>
+                <br />
+                <span class="value number currency" data-bind="formatNumber: balance, currency: currency, visible: hasBalance"></span>
+                <span class="noPostings" data-bind="visible: !hasBalance">-</span>
+            </p>
+        </div>
+        <h3 class="mbn mln">
+            <span data-bind="visible: inActive">Lukket: </span>
+            <span data-bind="text: name"></span>
+            <small class="lastUpdated" data-bind="if: lastUpdated, css: {isAutomaticAccount: isAutomatic, isManualAccount: !isAutomatic}"><span data-bind="formatDate: { date: lastUpdated, format: '%e. %b %Y %H:%i' }"></span></small>
+        </h3>
+        <p class="mtn mln info">
+            <span data-bind="text: bankName"></span> &ndash; <span data-bind="text: accountTypeFormatted"></span>
+        </p>
+    </div>
+</div>
