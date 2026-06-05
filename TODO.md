@@ -15,5 +15,4 @@
 
 ## Ikke planlagt
 - [ ] "Budget" siden
-- [ ] Nye 
 - [ ] Ingen planer om øvrig funktionalitet på "Konti" siden (f.eks. tilføj/luk konto, ændring af type, osv.).
