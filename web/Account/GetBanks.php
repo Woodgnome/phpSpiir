@@ -5,7 +5,6 @@ header("Content-Type: application/json");
 
 $DB = $GLOBALS["DB"];
 
-
 $db_banks = $DB->arrayQuery("SELECT * FROM banks");
 $db_bank_credentials = $DB->arrayQuery("SELECT * FROM bank_credentials");
 $banks = array_map(function($db_bank) use ($db_bank_credentials){

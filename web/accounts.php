@@ -4,7 +4,6 @@ require_once(__DIR__ . "/test/include.php");
 
 $DB = $GLOBALS["DB"];
 
-
 $db_countries = $DB->arrayQuery("SELECT * FROM countries");
 $db_categories_by_sort = $DB->arrayQuery("SELECT * FROM categories ORDER BY sort");
 $db_categories_by_id = $DB->arrayQuery("SELECT * FROM categories ORDER BY category_id");

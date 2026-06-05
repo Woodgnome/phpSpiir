@@ -5,7 +5,6 @@ header("Content-Type: application/json");
 
 $DB = $GLOBALS["DB"];
 
-
 $db_accounts = $DB->arrayQuery("SELECT * FROM accounts");
 $db_account_periods = $DB->arrayQuery("SELECT * FROM account_periods");
 $accounts = array_map(function($db_account) use ($db_account_periods){
