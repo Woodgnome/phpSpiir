@@ -1,0 +1,16 @@
+﻿<div data-bind="visible: visible">
+    <h3>
+        <span data-bind="text: title"></span>
+        <span data-bind="component: periodPicker"></span>
+    </h3>
+
+    <div data-bind="component: chart"></div>
+
+    <ul class="statistics" data-bind="foreach: statistics, animated: { visible: statistics().length > 0, effect: 'fade' }">
+        <li data-bind="click: $parent.selectStatistic, attr: { 'class': (selected() ? 'selected ' : '') + id }, tooltip: tooltip, tooltipOptions: { width: 120 }">
+            <span data-bind="formatNumber: value, currency: $parent.currency" class="number currency"></span>
+        </li>
+    </ul>
+
+    <div data-bind="component: budgetEditor"></div>
+</div>

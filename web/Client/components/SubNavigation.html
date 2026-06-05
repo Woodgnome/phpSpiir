@@ -1,0 +1,5 @@
+﻿<ul class="subNavigation" data-bind="foreach: subNavigation">
+    <li data-bind="css: { selected: $parent.currentSubNavigationItem() === id }">
+        <a href="#" data-bind="text: title, attr: { href: $data.url || '#' }, click: $parent.clickSubNavigation"></a>
+    </li>
+</ul>

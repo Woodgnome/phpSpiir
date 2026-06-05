@@ -1,0 +1,36 @@
+﻿<div class="budgetEditor">
+    <div class="budgetEditorHeader">
+        <div class="column nameColumn"><div class="name" data-bind="text: budgetType === 'income' ? 'Indtægt' : 'Regning'"></div></div>
+        <div class="column monthsColumn"><div class="months" data-bind="text: budgetType === 'income' ? 'Udbetalinger' : 'Forfald'"></div></div>
+        <div class="column amountColumn"><div class="amount">Beløb<br/><small data-bind="text: budgetType === 'income' ? '(pr. udbetaling)' : '(pr. regning)'"></small></div></div>
+        <div class="column totalColumn"><div class="total">Samlet<br/><small>(pr. år)</small></div></div>
+    </div>
+    <div data-bind="foreach: rows">
+        <div class="budgedEditorRow">
+            <div class="column nameColumn">
+                <input type="text" class="name" data-bind="value: name, css: { required: !name() }, hasFocus: hasFocus"  placeholder="Navn på budget" />
+            </div>
+            <div class="column monthsColumn">
+                <ul class="months" data-bind="foreach: months">
+                    <li data-bind="css: {selected: selected}, text: text, attr: {title: title}" unselectable="on"></li>
+                </ul>
+                <a href="#" class="link" data-bind="click: toggleContinueNextYear, css: {continueNextYear: continueNextYear, dontContinueNextYear: !continueNextYear()}, tooltip: continueNextYearTitle"></a>
+            </div>
+            <div class="column amountColumn">
+                <span class="amount"><input type="text" data-bind="numericValue: amount, valueUpdate: 'afterkeydown', css: { required: !amount() }" /> <small data-bind="text: currency.symbol"></small></span>
+            </div>
+            <div class="column totalColumn">
+                <span class="total"><span data-bind="formatNumber: total"></span> <small data-bind="text: currency.symbol"></small></span>
+            </div>
+            <div class="column removeColumn">
+                <a href="#" class="remove" data-bind="click: $parent.removeRow"></a>
+            </div>
+        </div>
+    </div>
+    <div class="mtl">
+        <button class="btn btn-mini" href="#" data-bind="click: newBudget">
+            <i class="addIcon"></i>
+            <span data-bind="text: budgetType === 'income' ? 'Tilføj indtægt' : 'Tilføj regning'"></span>
+        </button>
+    </div>
+</div>

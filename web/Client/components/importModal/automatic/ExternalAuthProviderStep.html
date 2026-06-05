@@ -1,0 +1,49 @@
+<div class="mobileBankLoginStep" data-bind="visible: visible">
+    <h4>Log på <strong data-bind="text: bank.name"></strong></h4>
+
+    <div style="margin-top: 100px; text-align: center">
+        <div style="position: relative;">
+            <button data-bind="click: startAuthSession, disable: loading() || bank.bankApiDisabledMesssage" class="btn btn-primary">
+                Log på <span data-bind="text: bank.name"></span>
+            </button>
+
+            <span class="formSpinner" data-bind="visible: loading()" style="transform: translate(10px, 5px); position: absolute;">
+                <span class="spinner"></span>
+            </span>
+        </div>
+
+        <p>
+            <small>
+                Du sendes videre til <b>Aiia</b> <small>(tidl. Nordic API Gateway)</small> for at forbinde til din bank. Derefter bliver du automatisk sendt tilbage til Spiir.
+            </small>
+        </p>
+
+        <ul class="notifications" data-bind="visible: errorMessage">
+            <li class="error">
+                <div class="icon"></div>
+                <p data-bind="html: errorMessage"></p>
+            </li>
+        </ul>
+
+        <ul class="notifications" data-bind="visible: bank.bankApiDisabledMesssage">
+            <li class="error">
+                <div class="icon"></div>
+                <p data-bind="html: bank.bankApiDisabledMesssage"></p>
+            </li>
+        </ul>
+    </div>
+
+    <ul class="footer clearfix">
+        <li>
+            <span class="pincodeHelp"></span>
+            <a class="pincodeHelp" target="_blank" href="#" rel="noopener" data-bind="attr: { href: pincodeHelpUrl }">Læs vejledning</a>
+        </li>
+
+        <li data-bind="visible: bank.csvSupported">
+            <a href="#" data-bind="click: goToManual">Indlæs poster manuelt</a>
+        </li>
+        <li>
+            <a href="mailto:support@spiir.dk">Få hjælp, kontakt support</a>
+        </li>
+    </ul>
+</div>

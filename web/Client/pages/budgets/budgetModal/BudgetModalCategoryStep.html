@@ -1,0 +1,21 @@
+﻿<div data-bind="visible: visible">
+
+    <h3>Hvad ønsker du at lave budget for?</h3>
+
+
+    <ul data-bind="foreach: budgetTypes" class="budgetTypeSelector">
+        <li data-bind="css: { selected: selected }, click: $parent.selectBudgetType">
+            <h4 data-bind="text: title"></h4>
+            <p data-bind="text: description"></p>
+            <p data-bind="visible:  selected" class="inputContainer">
+                <input name="subcategory" type="text"
+                       data-bind="comboboxSource: $parent.categories,
+                            comboboxValue: $parent.categoryId,
+                            comboboxOptions: { propagateEnter: false, scrollingEnabled: false, showOnClick: true }"
+                       placeholder="Vælg kategori" />
+            </p>
+        </li>
+    </ul>
+
+
+</div>

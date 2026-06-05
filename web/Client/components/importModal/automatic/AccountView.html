@@ -1,0 +1,32 @@
+﻿<div class="fileView">
+    <div class="bar" data-bind="click: click, css: { clickable: clickable }">
+        <div class="column leftColumn">
+            <div class="icon" data-bind="css: iconClass">
+                <div class="exclamation" data-bind="visible: highlight"></div>
+            </div>
+        </div>
+        <div class="column primary fixedWidthNarrow">
+            <div class="columnTitle">Konto</div>
+            <div class="columnContent" data-bind="text: accountName"></div>
+        </div>
+        <div class="column fixedWidthWide" data-bind="visible: !accountsMerged() && state() == 'success'">
+            <div class="columnTitle">Resultat</div>
+            <div class="columnContent">
+                <span data-bind="visible: newPostingCount() == 0">Ingen nye poster.</span>
+                <span data-bind="visible: newPostingCount() == 1">1 post oprettet på kontoen.</span>
+                <span data-bind="visible: newPostingCount() > 1">
+                    <span data-bind="text: newPostingCount"></span> poster oprettet på kontoen.
+                </span>
+            </div>
+        </div>
+        <div class="column fixedWidthWide" data-bind="visible: accountsMerged">
+            <div class="columnTitle">Resultat</div>
+            <div class="columnContent">
+                <span data-bind="text: newPostingCount"></span> poster tilføjet eksisterende konto.
+            </div>
+        </div>
+    </div>
+    <div class="drawer" data-bind="animated: { visible: drawerVisible, speed: 'fast' }">
+        <div data-bind="component: configuration"></div>
+    </div>
+</div>

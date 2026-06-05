@@ -1,0 +1,10 @@
+﻿<nav  class="mainNavigation" data-bind="component: navigation"></nav>
+<div class="topPanel" data-bind="component: topPanel"></div>
+<div data-bind="component: currentPage"></div>
+<ul class="notifications appLayoutNotifications" data-bind="foreach: { data: notifications, beforeRemove: notificationBeforeRemove }">
+    <li data-bind="css: notificationType">
+        <div class="icon"></div>
+        <a href="#" class="close" data-bind="click: $parent.removeNotification"></a>
+        <div data-bind="component: $data"></div>
+    </li>
+</ul>

@@ -1,0 +1,13 @@
+[
+  { "id": "10", "name": "Vis ikke", "categoryType": "Exclude", "sortingPosition": 95 },
+  { "id": "11", "name": "Indkomst", "categoryType": "Income", "sortingPosition": 90 },
+  { "id": "12", "name": "Bolig", "categoryType": "Expense", "sortingPosition": 10 },
+  { "id": "13", "name": "Transport", "categoryType": "Expense", "sortingPosition": 11 },
+  { "id": "14", "name": "Husholdning", "categoryType": "Expense", "sortingPosition": 12 },
+  { "id": "15", "name": "Ferie", "categoryType": "Expense", "sortingPosition": 15 },
+  { "id": "16", "name": "Andre leveomkostninger", "categoryType": "Expense", "sortingPosition": 13 },
+  { "id": "17", "name": "Privatforbrug", "categoryType": "Expense", "sortingPosition": 14 },
+  { "id": "18", "name": "Diverse", "categoryType": "Expense", "sortingPosition": 16 },
+  { "id": "19", "name": "Lån & gæld", "categoryType": "Expense", "sortingPosition": 17 },
+  { "id": "20", "name": "Pension & Opsparing", "categoryType": "Saving", "sortingPosition": 18 }
+]

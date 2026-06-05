@@ -1,0 +1,32 @@
+﻿<div class="budgetResults">
+    <p>
+        Saldo i slutningen af <span data-bind="text: statusPeriod"></span> <span data-bind="text: showEndOfYearBalance ? 'forventes at blive' : 'var'"></span> <span class="number currency" data-bind="formatNumber: statusBalance, currency: currency"></span>.
+        <span data-bind="visible: showExtraordinaryBalance">
+            Saldo med ekstraordinære poster var <span class="number currency" data-bind="formatNumber: extraordinaryBalance, currency: currency"></span>.
+        </span>
+    </p>
+    <div class="budgetTypeBoxes" data-bind="visible: !showEndOfYearBalance">
+        <div class="budgetTypeBox balance">
+            <h4 class="mbn">Saldo ultimo <span data-bind="text: statusPeriod"></span></h4>
+            <p class="mtn labelledNumber">
+                <span class="difference number currency" data-bind="formatNumber: Math.abs(statusDifference), currency: currency, css: { over: statusDifference < 0 }"></span>
+                <br/>
+                <span data-bind="text: statusDifference >= 0 ? 'mere end planlagt' : 'mindre end planlagt'"></span>
+            </p>
+        </div>
+        <div class="details" data-bind="foreach: budgetTypeBoxes">
+            <div class="budgetTypeBox">
+                <h4 class="mbn" data-bind="text: title"></h4>
+                <p class="mtn labelledNumber">
+                    <span class="number currency difference" data-bind="formatNumber: Math.abs(difference), currency: $parent.currency, css: { over: offBudget }"></span>
+                    <br/>
+                    <span data-bind="text: description"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="mtl mbn">Budgetsaldo</h2>
+    <p class="mtn">Går det bedre eller dårligere end hvad jeg har budgetteret med?</p>
+    <div data-bind="chart: balanceChart"></div>
+</div>

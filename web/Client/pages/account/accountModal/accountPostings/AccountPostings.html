@@ -1,0 +1,26 @@
+﻿<div class="accountPostings" data-bind="css: { centeredSpinner: processing }">
+    <div data-bind="visible: postings().length > 0">
+        <table class="dataTable">
+            <thead>
+                <tr>
+                    <th>Dato</th>
+                    <th>Tekst</th>
+                    <th>Beløb</th>
+                    <th>Saldo</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: postings">
+                <tr>
+                    <td data-bind="formatDate: date"></td>
+                    <td data-bind="text: description"></td>
+                    <td class="right" data-bind="formatNumber: amount"></td>
+                    <td class="right" data-bind="formatNumber: balance"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p data-bind="visible: !processing() && postings().length === 0">
+        Ingen poster fundet.
+    </p>
+</div>
