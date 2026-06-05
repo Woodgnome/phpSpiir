@@ -5,7 +5,7 @@ header("Content-Type: application/json");
 
 $DB = $GLOBALS["DB"];
 
-$db_accounts = $DB->arrayQuery("SELECT * FROM accounts");
+$db_accounts = $DB->arrayQuery("SELECT * FROM accounts"); // No idea what the ordering is supposed to be here
 $db_account_periods = $DB->arrayQuery("SELECT * FROM account_periods");
 $accounts = array_map(function($db_account) use ($db_account_periods){
   return [
@@ -43,8 +43,8 @@ $accounts = array_map(function($db_account) use ($db_account_periods){
     "bankId" => $db_account["bank_id"],
     "bankName" => $db_account["bank_name"],
     "partnerId" => $db_account["partner_id"],
-    "inActive" => !empty($db_account["in_active"]),
-    "inActiveBySystem" => !empty($db_account["in_active_by_system"]),
+    "inActive" => !empty($db_account["inactive"]),
+    "inActiveBySystem" => !empty($db_account["inactive_by_system"]),
     "ownerUserId" => $db_account["owner_user_id"],
     "connectionType" => $db_account["connection_type"],
     "lastUpdated" => timestring(strtotime($db_account["last_updated"])),

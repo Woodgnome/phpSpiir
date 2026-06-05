@@ -12,6 +12,8 @@ $keys = [
   "type" => "accountType",
   "type_explicitly_set" => "accountTypeExplicitlySet",
   "subcategory_id" => "accountSubcategoryId",
+  "inactive" => "inActive",
+  "inactive_by_system" => "inActiveBySystem",
 ];
 $sub_tables = [
   [
