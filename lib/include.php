@@ -489,6 +489,9 @@ function parse_query_string($query_string, $repeated_keys = []){
   $parameters = [];
   $parts = explode("&", trim($query_string, "?& "));
   foreach ($parts as $part){
+    if (empty($part)){
+      continue;
+    }
     list($key, $value) = explode("=", $part);
     $key = rawurldecode($key);
     $value = rawurldecode($value);
