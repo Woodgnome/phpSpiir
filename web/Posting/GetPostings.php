@@ -38,6 +38,12 @@ $sort_direction = !empty($_REQUEST["sortDescending"]) && $_REQUEST["sortDescendi
 $sorting .= $sort_direction;
 $locked_subcategories = get_categories("Locked");
 
+// Use custom query string parser to handle repeated query parameter 'accountGroupIds'
+$params = parse_query_string( $_SERVER['QUERY_STRING'], [ "accountGroupIds" ]);
+$account_group_ids = empty($params["accountGroupIds"])
+                      ? null
+                      : array_map(function($account_group_id){ return intval($account_group_id); }, $params["accountGroupIds"]);
+
 // Not supported, ensure an error is displayed in client (TODO)
 if (!empty($_REQUEST["onlySinceLastLogin"])){
   http_response_code(400);
@@ -59,6 +65,7 @@ $sql = "
 $all_posts = $DB->arrayQuery($sql);
 $db_posts = $DB->arrayQuery("
   $sql
+    " . (!empty($account_group_ids) ? " AND a.account_id IN (" . implode(", ", $account_group_ids) . ")" : "") . "
     " . (!empty($from_month) ? " AND COALESCE(date_custom, date) >= FROM_UNIXTIME($from_month)" : "") . "
     " . (!empty($to_month) ? " AND COALESCE(date_custom, date) <= FROM_UNIXTIME($to_month)" : "") . "
     " . (!empty($from_week) ? " AND COALESCE(date_custom, date) >= FROM_UNIXTIME($from_week)" : "") . "
