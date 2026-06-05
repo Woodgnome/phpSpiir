@@ -88,6 +88,18 @@ $entries = [
     "json_path" => __DIR__ . "/../../archive/Postings_2020W1_2020W52.json",
     "query" => "_t=1777147443644&fromWeek=2020W01&toWeek=2020W52",
   ],
+  "Nordea" => [
+    "json_path" => __DIR__ . "/../../archive/Postings_Nordea.json",
+    "query" => "accountGroupIds=634927656802598587",
+  ],
+  "LSB" => [
+    "json_path" => __DIR__ . "/../../archive/Postings_LSB.json",
+    "query" => "accountGroupIds=634590912913885537",
+  ],
+  "LSB (old) + opsparing" => [
+    "json_path" => __DIR__ . "/../../archive/Postings_LSBold_opsparing.json",
+    "query" => "accountGroupIds=635463732776381612&accountGroupIds=634590912913885537",
+  ],
 ];
 foreach ($entries as $key => $entry){
   $a = json_decode(file_get_contents($entry["json_path"]), true);
