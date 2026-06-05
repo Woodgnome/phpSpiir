@@ -8,11 +8,31 @@ $entries = [
     "json_path" => __DIR__ . "/../../archive/banks.json",
     "path" => "/Account/GetBanks.php",
     "query" => "_t=1777147443644",
+    "ignore_keys" => [ "searchHints" ],
+  ],
+  "balance_history_lsb" => [
+    "json_path" => __DIR__ . "/../../archive/BalanceHistory_LSB.json",
+    "path" => "/Account/GetBalanceHistory.php",
+    "query" => "_t=1780659561226&accountGroupId=635465073863192508",
+    "ignore_keys" => [ "balance" ],
+  ],
+  "balance_history_opsparing" => [
+    "json_path" => __DIR__ . "/../../archive/BalanceHistory_opsparing.json",
+    "path" => "/Account/GetBalanceHistory.php",
+    "query" => "_t=1780659561226&accountGroupId=636687979505357445",
+    "ignore_keys" => [],
+  ],
+  "balance_history_nordea" => [
+    "json_path" => __DIR__ . "/../../archive/BalanceHistory_Nordea.json",
+    "path" => "/Account/GetBalanceHistory.php",
+    "query" => "_t=1780659561226&accountGroupId=634927656802598587",
+    "ignore_keys" => [ "balance" ],
   ],
   "account_groups" => [
     "json_path" => __DIR__ . "/../../archive/accounts.json",
     "path" => "/Account/GetAccountGroups.php",
     "query" => "_t=1777147443644",
+    "ignore_keys" => [],
   ],
 ];
 foreach ($entries as $key => $entry){
@@ -23,7 +43,7 @@ foreach ($entries as $key => $entry){
   echo $key . "\n";
   echo "========================================================================================================================\n\n";
   try {
-    $items_ignored = compare_recursive($a, $b, [ "rowKey", "name" ]);
+    $items_ignored = compare_recursive($a, $b, $entry["ignore_keys"]);
     if (!empty($items_ignored)){
       foreach ($items_ignored as $ignored_item){
         list($keys, $a, $b) = $ignored_item;
@@ -34,7 +54,7 @@ foreach ($entries as $key => $entry){
   }
   catch (Exception $ex){
     $message = $ex->getMessage();
-    echo $_ENV["SCHEME"] . "://" . $_ENV["HOST"] . $_ENV["HOST"] . $entry["path"] . "?" . $entry["query"] . "\n\n";
+    echo $_ENV["SCHEME"] . "://" . $_ENV["HOST"] . $entry["path"] . "?" . $entry["query"] . "\n\n";
     echo "Theirs <--> Mine\n";
     echo $message. "\n\n";
     $keys = preg_split("/ +/", preg_replace("/(:.*|\[|\])/", " ", $message), -1, PREG_SPLIT_NO_EMPTY);

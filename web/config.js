@@ -35,7 +35,7 @@ define({
     "updateAccountGroup": "/Account/UpdateAccountGroup",
     "closeAccountGroup": "/Account/CloseAccountGroup",
     "reopenAccountGroup": "/Account/ReopenAccountGroup",
-    "getBalanceHistory": "/Account/GetBalanceHistory",
+    "getBalanceHistory": "/Account/GetBalanceHistory.php",
     "logClientError": "/ClientError/Log",
     "getDataForSplitUrl": "/SplitPosting/GetDataForSplit",
     "performSplitUrl": "/SplitPosting/PerformSplit",
