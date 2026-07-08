@@ -5,8 +5,25 @@ header("Content-Type: application/json");
 
 $DB = $GLOBALS["DB"];
 
-$db_accounts = $DB->arrayQuery("SELECT * FROM accounts"); // No idea what the ordering is supposed to be here
-$db_account_periods = $DB->arrayQuery("SELECT * FROM account_periods");
+// No idea what the ordering is supposed to be here
+$db_accounts = $DB->arrayQuery("
+  SELECT
+    a.*,
+    COUNT(*) number_of_postings
+  FROM accounts a
+  JOIN account_periods ap ON a.account_id = ap.account_id
+  JOIN posts p ON ap.account_period_id = p.account_period_id
+  GROUP BY a.account_id
+");
+$db_account_periods = $DB->arrayQuery("
+  SELECT
+    ap.*,
+    COUNT(*) posting_count,
+    SUM(CASE WHEN p.subcategory_id = 102 THEN 1 ELSE 0 END) ignored_posting_count
+  FROM account_periods ap
+  JOIN posts p ON ap.account_period_id = p.account_period_id
+  GROUP BY ap.account_period_id
+");
 $accounts = array_map(function($db_account) use ($db_account_periods){
   return [
     "id" => $db_account["account_id"],
