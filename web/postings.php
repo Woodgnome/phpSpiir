@@ -11,6 +11,17 @@ $db_subcategories = $DB->arrayQuery("
 ");
 $db_tags = array_column($DB->arrayQuery("SELECT tags FROM posts WHERE tags IS NOT NULL ORDER BY date"), "tags");
 $oldest_post = $DB->rowQuery("SELECT * FROM posts ORDER BY date ASC LIMIT 1");
+$consumption_posts_count = $DB->cellQuery("
+  SELECT COUNT(*) FROM `posts`
+  WHERE split_group_id IS NULL
+    OR split_group_id <> post_id
+");
+$consumption_posts_categorized_count = $DB->cellQuery("
+  SELECT COUNT(*) FROM `posts`
+  WHERE (split_group_id IS NULL
+         OR split_group_id <> post_id)
+    AND subcategory_id IS NOT NULL
+");
 $uncategorized_post_texts = array_merge(...array_map(
   function($post){
     return [ $post["description"] => intval($post["count"]) ];
@@ -23,9 +34,7 @@ $uncategorized_post_texts = array_merge(...array_map(
   ")
 ));
 $last_upload = $_ENV["LAST_UPLOAD"]; // TODO
-$consumption_posts_count = $_ENV["CONSUMPTION_POSTS_COUNT"]; // TODO
-$consumption_posts_categorized_count = $_ENV["CONSUMPTION_POSTS_CATEGORIZED_COUNT"]; // TODO
-$categorization_completion = $_ENV["CATEGORIZATION_COMPLETED"]; // TODO
+$categorization_completion = intval($consumption_posts_categorized_count / $consumption_posts_count * 100);
 $start_month = date("Ym", strtotime($oldest_post["date"]));
 $tags = array_unique(array_merge(...array_map(function($tags){ return explode(";", $tags); }, $db_tags)));
 

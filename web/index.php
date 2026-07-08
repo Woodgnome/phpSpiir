@@ -11,6 +11,17 @@ $db_subcategories = $DB->arrayQuery("
 ");
 $db_countries = $DB->arrayQuery("SELECT * FROM countries");
 $oldest_post = $DB->rowQuery("SELECT * FROM posts ORDER BY date ASC LIMIT 1");
+$consumption_posts_count = $DB->cellQuery("
+  SELECT COUNT(*) FROM `posts`
+  WHERE split_group_id IS NULL
+    OR split_group_id <> post_id
+");
+$consumption_posts_categorized_count = $DB->cellQuery("
+  SELECT COUNT(*) FROM `posts`
+  WHERE (split_group_id IS NULL
+         OR split_group_id <> post_id)
+    AND subcategory_id IS NOT NULL
+");
 
 function map_subcategories($subcategories, $hints = null, $tag = null, $value_prefix = null){
   return array_map(function($subcategory) use ($hints, $tag, $value_prefix){
@@ -35,9 +46,7 @@ function category_name($categories, $category_id){
 
 $category_options = array_column($db_categories, "category_id");
 $last_upload = $_ENV["LAST_UPLOAD"]; // TODO
-$consumption_posts_count = $_ENV["CONSUMPTION_POSTS_COUNT"]; // TODO
-$consumption_posts_categorized_count = $_ENV["CONSUMPTION_POSTS_CATEGORIZED_COUNT"]; // TODO
-$categorization_completion = $_ENV["CATEGORIZATION_COMPLETED"]; // TODO
+$categorization_completion = intval($consumption_posts_categorized_count / $consumption_posts_count * 100);
 $session = [
   "serverNotifications" => [],
   "userMessages" => [],
