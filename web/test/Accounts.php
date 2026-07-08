@@ -32,7 +32,7 @@ $entries = [
     "json_path" => __DIR__ . "/../../archive/accounts.json",
     "path" => "/Account/GetAccountGroups.php",
     "query" => "_t=1777147443644",
-    "ignore_keys" => [],
+    "ignore_keys" => [ "ignoredPostingCount", "numberOfPostings" ],
   ],
 ];
 foreach ($entries as $key => $entry){

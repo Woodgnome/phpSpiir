@@ -25,10 +25,8 @@ DROP TABLE IF EXISTS `account_periods`;
 CREATE TABLE `account_periods` (
   `account_period_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `account_id` bigint(20) NOT NULL,
-  `posting_count` int(11) NOT NULL,
   `ignore_postings_before` datetime DEFAULT NULL,
   `ignore_postings_after` datetime DEFAULT NULL,
-  `ignored_posting_count` int(11) NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `start_balance` int(11) NOT NULL,
@@ -58,7 +56,6 @@ CREATE TABLE `accounts` (
   `available_balance` int(11) DEFAULT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
-  `number_of_postings` int(11) NOT NULL,
   `is_automatic` tinyint(4) NOT NULL DEFAULT 0,
   `bank_id` varchar(255) NOT NULL,
   `bank_name` varchar(255) NOT NULL,
