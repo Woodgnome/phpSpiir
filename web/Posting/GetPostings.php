@@ -72,7 +72,7 @@ $db_posts = $DB->arrayQuery("
     " . (!empty($to_week) ? " AND COALESCE(date_custom, date) <= FROM_UNIXTIME($to_week)" : "") . "
     " . (!empty($category_id) ? " AND c.category_id = $category_id" : "") . "
     " . (!empty($subcategory_id) ? " AND p.subcategory_id = $subcategory_id" : "") . "
-    " . (!empty($text_query) ? " AND (description LIKE $text_query OR comment LIKE $text_query)" : "") . "
+    " . (!empty($text_query) ? " AND (description LIKE $text_query OR description_original LIKE $text_query OR comment LIKE $text_query)" : "") . "
     " . (!empty($tags) ? implode("\n", array_map(function($tag){ return " AND tags REGEXP '[[:<:]]" . $tag . "[[:>:]]'"; }, $tags)) : "") . "
   ORDER BY " . $sortings[$sorting]
 );
