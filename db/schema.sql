@@ -35,7 +35,7 @@ CREATE TABLE `account_periods` (
   PRIMARY KEY (`account_period_id`),
   KEY `account_id` (`account_id`),
   CONSTRAINT `account_periods_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `accounts` (`account_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,8 +66,9 @@ CREATE TABLE `accounts` (
   `connection_type` varchar(255) DEFAULT NULL,
   `last_updated` datetime NOT NULL,
   PRIMARY KEY (`account_id`),
-  KEY `owner_user_id` (`owner_user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+  KEY `owner_user_id` (`owner_user_id`),
+  CONSTRAINT `accounts_ibfk_1` FOREIGN KEY (`bank_credential_id`) REFERENCES `bank_credentials` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,8 +87,9 @@ CREATE TABLE `bank_credentials` (
   `is_disabled` tinyint(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`bank_credential_id`),
   KEY `bank_id` (`bank_id`),
+  KEY `id` (`id`),
   CONSTRAINT `bank_credentials_ibfk_1` FOREIGN KEY (`bank_id`) REFERENCES `banks` (`bank_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,7 +117,7 @@ CREATE TABLE `banks` (
   `help_url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`bank_id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +133,7 @@ CREATE TABLE `categories` (
   `type` varchar(255) NOT NULL,
   `sort` int(11) NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +148,7 @@ CREATE TABLE `countries` (
   `id` varchar(2) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`country_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,7 +183,7 @@ CREATE TABLE `posts` (
   KEY `posts_ibfk_3` (`account_period_id`),
   CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories` (`subcategory_id`),
   CONSTRAINT `posts_ibfk_3` FOREIGN KEY (`account_period_id`) REFERENCES `account_periods` (`account_period_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +202,7 @@ CREATE TABLE `subcategories` (
   PRIMARY KEY (`subcategory_id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `subcategories_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -212,4 +214,4 @@ CREATE TABLE `subcategories` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-26 21:48:56
+-- Dump completed on 2026-08-15 13:50:14
