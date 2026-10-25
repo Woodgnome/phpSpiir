@@ -27,6 +27,7 @@ $sortings = [
 $start_at = !empty($_REQUEST["startAt"]) ? intval($_REQUEST["startAt"]) : 0;
 $category_id = !empty($_REQUEST["categoryIds"]) ? intval($_REQUEST["categoryIds"]) : null;
 $subcategory_id = !empty($_REQUEST["subcategoryIds"]) ? intval($_REQUEST["subcategoryIds"]) : null;
+$categorization_status = !empty($_REQUEST["categorizationStatus"]) ? $_REQUEST["categorizationStatus"] : null;
 $from_month = !empty($_REQUEST["fromMonth"]) ? strtotime(substr_replace($_REQUEST["fromMonth"], "-", 4, 0) . "-01 00:00:00") : null;
 $to_month = !empty($_REQUEST["toMonth"]) ? strtotime("last day of " . substr_replace($_REQUEST["toMonth"], "-", 4, 0) . "-01 23:59:59") : null;
 $from_week = !empty($_REQUEST["fromWeek"]) ? year_week_to_time(...[ ...explode("W", $_REQUEST["fromWeek"]), true]) : null;
@@ -72,6 +73,7 @@ $db_posts = $DB->arrayQuery("
     " . (!empty($to_week) ? " AND COALESCE(date_custom, date) <= FROM_UNIXTIME($to_week)" : "") . "
     " . (!empty($category_id) ? " AND c.category_id = $category_id" : "") . "
     " . (!empty($subcategory_id) ? " AND p.subcategory_id = $subcategory_id" : "") . "
+    " . ($categorization_status == "Uncategorized" ? " AND p.subcategory_id IS NULL" : "") . "
     " . (!empty($text_query) ? " AND (description LIKE $text_query OR description_original LIKE $text_query OR comment LIKE $text_query)" : "") . "
     " . (!empty($tags) ? implode("\n", array_map(function($tag){ return " AND tags REGEXP '[[:<:]]" . $tag . "[[:>:]]'"; }, $tags)) : "") . "
   ORDER BY " . $sortings[$sorting]
